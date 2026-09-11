@@ -11,7 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommonConvertersIndexRouteImport } from './routes/common-converters.index'
-import { Route as CommonConvertersLengthConverterRouteImport } from './routes/common-converters.length-converter'
+import { Route as CommonConvertersLengthConverterIndexRouteImport } from './routes/common-converters.length-converter.index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -23,45 +23,46 @@ const CommonConvertersIndexRoute = CommonConvertersIndexRouteImport.update({
   path: '/common-converters/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CommonConvertersLengthConverterRoute =
-  CommonConvertersLengthConverterRouteImport.update({
-    id: '/common-converters/length-converter',
-    path: '/common-converters/length-converter',
+const CommonConvertersLengthConverterIndexRoute =
+  CommonConvertersLengthConverterIndexRouteImport.update({
+    id: '/common-converters/length-converter/',
+    path: '/common-converters/length-converter/',
     getParentRoute: () => rootRouteImport,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/common-converters/length-converter': typeof CommonConvertersLengthConverterRoute
   '/common-converters/': typeof CommonConvertersIndexRoute
+  '/common-converters/length-converter/': typeof CommonConvertersLengthConverterIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/common-converters/length-converter': typeof CommonConvertersLengthConverterRoute
   '/common-converters': typeof CommonConvertersIndexRoute
+  '/common-converters/length-converter': typeof CommonConvertersLengthConverterIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/common-converters/length-converter': typeof CommonConvertersLengthConverterRoute
   '/common-converters/': typeof CommonConvertersIndexRoute
+  '/common-converters/length-converter/': typeof CommonConvertersLengthConverterIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/common-converters/length-converter' | '/common-converters/'
+  fullPaths:
+    '/' | '/common-converters/' | '/common-converters/length-converter/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/common-converters/length-converter' | '/common-converters'
+  to: '/' | '/common-converters' | '/common-converters/length-converter'
   id:
     | '__root__'
     | '/'
-    | '/common-converters/length-converter'
     | '/common-converters/'
+    | '/common-converters/length-converter/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  CommonConvertersLengthConverterRoute: typeof CommonConvertersLengthConverterRoute
   CommonConvertersIndexRoute: typeof CommonConvertersIndexRoute
+  CommonConvertersLengthConverterIndexRoute: typeof CommonConvertersLengthConverterIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -80,11 +81,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommonConvertersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/common-converters/length-converter': {
-      id: '/common-converters/length-converter'
+    '/common-converters/length-converter/': {
+      id: '/common-converters/length-converter/'
       path: '/common-converters/length-converter'
-      fullPath: '/common-converters/length-converter'
-      preLoaderRoute: typeof CommonConvertersLengthConverterRouteImport
+      fullPath: '/common-converters/length-converter/'
+      preLoaderRoute: typeof CommonConvertersLengthConverterIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -92,8 +93,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  CommonConvertersLengthConverterRoute: CommonConvertersLengthConverterRoute,
   CommonConvertersIndexRoute: CommonConvertersIndexRoute,
+  CommonConvertersLengthConverterIndexRoute:
+    CommonConvertersLengthConverterIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -266,3 +266,66 @@ export function formatResult(value: number): string {
   const rounded = Number(value.toPrecision(10));
   return String(rounded);
 }
+
+/** Canonical URL slug for a unit inside a conversion-pair path. */
+export function unitSlug(unit: Unit): string {
+  return unit.id;
+}
+
+/** Canonical conversion-pair slug, e.g. "kilometer-to-meter". */
+export function pairSlug(fromId: string, toId: string): string {
+  return `${fromId}-to-${toId}`;
+}
+
+/** Symbol aliases so short paths like "km-to-m" resolve too. */
+const unitAliases = (() => {
+  const map = new Map<string, string>();
+  for (const u of lengthUnits) map.set(u.id, u.id);
+  for (const u of lengthUnits) {
+    if (!u.symbol) continue;
+    for (const raw of u.symbol.split(",")) {
+      const alias = raw
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+      if (alias && !map.has(alias)) map.set(alias, u.id);
+    }
+  }
+  return map;
+})();
+
+/** Parses a pair slug into unit ids, or null when it doesn't resolve. */
+export function parsePairSlug(slug: string): { from: string; to: string } | null {
+  const lower = slug.toLowerCase();
+  const parts = lower.split("-to-");
+  for (let i = 1; i < parts.length; i++) {
+    const fromRaw = parts.slice(0, i).join("-to-");
+    const toRaw = parts.slice(i).join("-to-");
+    const from = unitAliases.get(fromRaw);
+    const to = unitAliases.get(toRaw);
+    if (from && to && from !== to) return { from, to };
+  }
+  return null;
+}
+
+/** Title-cased unit name for headings, e.g. "Kilometer". */
+export function unitTitle(unit: Unit): string {
+  return unit.name.charAt(0).toUpperCase() + unit.name.slice(1);
+}
+
+/** Plural-ish unit name for prose, e.g. "inches", "feet". */
+export function unitPlural(unit: Unit): string {
+  const irregular: Record<string, string> = {
+    foot: "feet",
+    inch: "inches",
+    "inch-us-survey": "inches (US survey)",
+    "foot-us-survey": "feet (US survey)",
+  };
+  if (irregular[unit.id]) return irregular[unit.id]!;
+  if (/[a-z]$/.test(unit.name)) return `${unit.name}s`;
+  return unit.name;
+}
+
+/** Common amounts used in the pair-page reference table. */
+export const pairTableAmounts = [1, 2, 3, 5, 10, 20, 50, 100, 250, 500, 1000];

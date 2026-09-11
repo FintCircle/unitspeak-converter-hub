@@ -11,7 +11,7 @@ import {
 
 type LengthSearch = { from?: string; to?: string; amount?: string };
 
-export const Route = createFileRoute("/common-converters/length-converter")({
+export const Route = createFileRoute("/common-converters/length-converter/")({
   validateSearch: (search: Record<string, unknown>): LengthSearch => {
     const raw = search as Partial<Record<keyof LengthSearch, unknown>>;
     const out: LengthSearch = {};
