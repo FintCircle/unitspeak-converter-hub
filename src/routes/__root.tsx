@@ -138,6 +138,20 @@ function RootComponent() {
 
         <footer className="mt-8 border-t border-line">
           <div className="mx-auto max-w-md px-4 py-5 text-[11px] leading-relaxed text-mute">
+            <nav className="mb-3 flex flex-wrap gap-x-4 gap-y-1 text-[11px] tracking-[0.1em] uppercase">
+              <Link to="/about" className="hover:text-ox hover:underline">
+                About
+              </Link>
+              <Link to="/terms" className="hover:text-ox hover:underline">
+                Terms
+              </Link>
+              <Link to="/privacy" className="hover:text-ox hover:underline">
+                Privacy
+              </Link>
+              <a href="mailto:fintcircle@gmail.com" className="hover:text-ox hover:underline">
+                Contact
+              </a>
+            </nav>
             <Link to="/" className="hover:underline">
               Unitspeak
             </Link>{" "}
