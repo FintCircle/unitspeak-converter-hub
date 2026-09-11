@@ -47,8 +47,12 @@ export const Route = createFileRoute("/common-converters/length-converter")({
 });
 
 function LengthConverterPage() {
-  const { from, to, amount } = Route.useSearch();
+  const search = Route.useSearch();
+  const from = search.from ?? "meter";
+  const to = search.to ?? "foot";
+  const amount = search.amount ?? "1";
   const meter = lengthUnitById.get("meter")!;
+
 
   return (
     <main className="mx-auto max-w-md px-4 pb-16">
