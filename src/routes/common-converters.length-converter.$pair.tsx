@@ -198,6 +198,15 @@ function PairPage() {
       </section>
 
       <section className="mt-7">
+        <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">{article.heading}</h2>
+        <div className="space-y-3 border-t border-line pt-3 text-[12.5px] leading-relaxed text-ink">
+          {article.paragraphs.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-7">
         <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">
           Related conversions
         </h2>
