@@ -6,8 +6,8 @@ import { lengthUnits, pairSlug, unitLabel, type Unit } from "@/data/length";
 type UnitFieldProps = {
   label: string;
   selected: Unit | null;
-  excludedId?: string;
-  onSelect: (unit: Unit) => void;
+  excludedId: string | undefined;
+  onSelect: (unit: Unit | null) => void;
 };
 
 function UnitField({ label, selected, excludedId, onSelect }: UnitFieldProps) {
@@ -28,7 +28,17 @@ function UnitField({ label, selected, excludedId, onSelect }: UnitFieldProps) {
           .toLowerCase()
           .includes(needle);
       })
-      .sort((a, b) => a.name.localeCompare(b.name))
+      .sort((a, b) => {
+        const rank = (unit: Unit) => {
+          const values = [unit.name, unit.symbol ?? "", unit.id].map((value) =>
+            value.toLowerCase(),
+          );
+          if (values.includes(needle)) return 0;
+          if (values.some((value) => value.startsWith(needle))) return 1;
+          return 2;
+        };
+        return rank(a) - rank(b) || a.name.localeCompare(b.name);
+      })
       .slice(0, 8);
   }, [excludedId, query]);
 
@@ -78,6 +88,7 @@ function UnitField({ label, selected, excludedId, onSelect }: UnitFieldProps) {
         onBlur={() => setOpen(false)}
         onChange={(event) => {
           setQuery(event.target.value);
+          onSelect(null);
           setOpen(true);
           setActiveIndex(0);
         }}
