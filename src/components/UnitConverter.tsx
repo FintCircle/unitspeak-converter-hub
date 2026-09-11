@@ -14,6 +14,8 @@ type Props = {
   initialAmount: string;
   initialFrom: string;
   initialTo: string;
+  /** Hides the from/to pickers, e.g. on a fixed conversion-pair page. */
+  lockUnits?: boolean;
 };
 
 export function UnitConverter({
@@ -22,6 +24,7 @@ export function UnitConverter({
   initialAmount,
   initialFrom,
   initialTo,
+  lockUnits = false,
 }: Props) {
   const [amount, setAmount] = useState(initialAmount);
   const [from, setFrom] = useState(initialFrom);
@@ -57,59 +60,62 @@ export function UnitConverter({
           className="w-full border border-line bg-paper px-3 py-2.5 text-2xl font-medium text-ink outline-none focus:border-ox"
         />
 
-        <div className="mt-3 grid grid-cols-[1fr_auto_1fr] items-end gap-2">
-          <div>
-            <label
-              htmlFor="from-unit"
-              className="mb-1 block text-[10px] tracking-[0.18em] text-mute uppercase"
+        {!lockUnits && (
+          <div className="mt-3 grid grid-cols-[1fr_auto_1fr] items-end gap-2">
+            <div>
+              <label
+                htmlFor="from-unit"
+                className="mb-1 block text-[10px] tracking-[0.18em] text-mute uppercase"
+              >
+                From
+              </label>
+              <select
+                id="from-unit"
+                value={from}
+                onChange={(e) => setFrom(e.target.value)}
+                className="w-full border border-line bg-paper px-2 py-2.5 text-[13px] text-ink outline-none focus:border-ox"
+              >
+                {units.map((u) => (
+                  <option key={u.id} value={u.id}>
+                    {unitLabel(u)}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <button
+              type="button"
+              aria-label="Swap units"
+              onClick={() => {
+                setFrom(to);
+                setTo(from);
+              }}
+              className="pb-2.5 text-xs text-mute hover:text-ox"
             >
-              From
-            </label>
-            <select
-              id="from-unit"
-              value={from}
-              onChange={(e) => setFrom(e.target.value)}
-              className="w-full border border-line bg-paper px-2 py-2.5 text-[13px] text-ink outline-none focus:border-ox"
-            >
-              {units.map((u) => (
-                <option key={u.id} value={u.id}>
-                  {unitLabel(u)}
-                </option>
-              ))}
-            </select>
+              ⇄
+            </button>
+            <div>
+              <label
+                htmlFor="to-unit"
+                className="mb-1 block text-[10px] tracking-[0.18em] text-mute uppercase"
+              >
+                To
+              </label>
+              <select
+                id="to-unit"
+                value={to}
+                onChange={(e) => setTo(e.target.value)}
+                className="w-full border border-line bg-paper px-2 py-2.5 text-[13px] text-ink outline-none focus:border-ox"
+              >
+                {units.map((u) => (
+                  <option key={u.id} value={u.id}>
+                    {unitLabel(u)}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
-          <button
-            type="button"
-            aria-label="Swap units"
-            onClick={() => {
-              setFrom(to);
-              setTo(from);
-            }}
-            className="pb-2.5 text-xs text-mute hover:text-ox"
-          >
-            ⇄
-          </button>
-          <div>
-            <label
-              htmlFor="to-unit"
-              className="mb-1 block text-[10px] tracking-[0.18em] text-mute uppercase"
-            >
-              To
-            </label>
-            <select
-              id="to-unit"
-              value={to}
-              onChange={(e) => setTo(e.target.value)}
-              className="w-full border border-line bg-paper px-2 py-2.5 text-[13px] text-ink outline-none focus:border-ox"
-            >
-              {units.map((u) => (
-                <option key={u.id} value={u.id}>
-                  {unitLabel(u)}
-                </option>
-              ))}
-            </select>
-          </div>
-        </div>
+        )}
+
 
         <div className="mt-4 border-t border-line pt-3">
           <div className="flex items-baseline justify-between">

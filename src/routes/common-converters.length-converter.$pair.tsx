@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { SharePage } from "@/components/SharePage";
 import { UnitConverter } from "@/components/UnitConverter";
 import {
   convertLength,
@@ -112,6 +113,11 @@ function PairPage() {
     .filter(([f, t]) => f === from.id || t === to.id || f === to.id || t === from.id)
     .slice(0, 10);
 
+  const allTargets = lengthUnits
+    .filter((u) => u.id !== from.id)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+
   return (
     <main className="mx-auto max-w-md px-4 pb-16">
       <nav className="pt-3 pb-2 text-[11px] text-mute">
@@ -140,7 +146,13 @@ function PairPage() {
         initialAmount="1"
         initialFrom={from.id}
         initialTo={to.id}
+        lockUnits
       />
+
+      <div className="mt-2 flex justify-end">
+        <SharePage title={pair.fullTitle} text={pair.description} />
+      </div>
+
 
       <section className="mt-6">
         <h1 className="font-display text-[19px] leading-tight font-semibold tracking-tight">
@@ -214,6 +226,42 @@ function PairPage() {
         >
           All length units →
         </Link>
+      </section>
+
+      <section className="mt-7">
+        <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">
+          Convert {unitTitle(from)} to all length units
+        </h2>
+        <table className="w-full border-t border-line text-[12px]">
+          <thead>
+            <tr className="text-[10px] tracking-[0.14em] text-mute uppercase">
+              <th className="border-b border-line py-1.5 text-left font-normal">
+                Conversion
+              </th>
+              <th className="border-b border-line py-1.5 text-right font-normal">
+                1 {unitShort(from)} equals
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {allTargets.map((u) => (
+              <tr key={u.id}>
+                <td className="border-b border-line py-1.5">
+                  <Link
+                    to="/common-converters/length-converter/$pair"
+                    params={{ pair: pairSlug(from.id, u.id) }}
+                    className="text-ox underline-offset-2 hover:underline"
+                  >
+                    {unitTitle(from)} to {u.name}
+                  </Link>
+                </td>
+                <td className="border-b border-line py-1.5 text-right whitespace-nowrap">
+                  {formatResult(convertLength(1, from.id, u.id))} {unitShort(u)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </section>
     </main>
   );
