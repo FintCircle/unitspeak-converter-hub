@@ -5,6 +5,7 @@ import {
   lengthUnitById,
   lengthUnits,
   pairLabel,
+  pairSlug,
   popularLengthConversions,
   unitLabel,
 } from "@/data/length";
@@ -85,8 +86,8 @@ function LengthConverterPage() {
           {popularLengthConversions.map(([f, t]) => (
             <Link
               key={`${f}-${t}`}
-              to="/common-converters/length-converter"
-              search={{ from: f, to: t, amount: "1" }}
+              to="/common-converters/length-converter/$pair"
+              params={{ pair: pairSlug(f, t) }}
               className="border-b border-line py-2 text-[12px] text-ink underline-offset-2 hover:underline"
             >
               {pairLabel(f, t)}
@@ -112,15 +113,15 @@ function LengthConverterPage() {
               {unit.id !== "meter" && (
                 <div className="mt-0.5 flex flex-wrap gap-x-3 text-[11px] text-ox">
                   <Link
-                    to="/common-converters/length-converter"
-                    search={{ from: unit.id, to: "meter", amount: "1" }}
+                    to="/common-converters/length-converter/$pair"
+                    params={{ pair: pairSlug(unit.id, "meter") }}
                     className="underline-offset-2 hover:underline"
                   >
                     {unit.name} to meter
                   </Link>
                   <Link
-                    to="/common-converters/length-converter"
-                    search={{ from: "meter", to: unit.id, amount: "1" }}
+                    to="/common-converters/length-converter/$pair"
+                    params={{ pair: pairSlug("meter", unit.id) }}
                     className="underline-offset-2 hover:underline"
                   >
                     meter to {unit.name}

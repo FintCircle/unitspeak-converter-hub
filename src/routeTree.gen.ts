@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CommonConvertersIndexRouteImport } from './routes/common-converters.index'
 import { Route as CommonConvertersLengthConverterIndexRouteImport } from './routes/common-converters.length-converter.index'
+import { Route as CommonConvertersLengthConverterPairRouteImport } from './routes/common-converters.length-converter.$pair'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -29,39 +30,57 @@ const CommonConvertersLengthConverterIndexRoute =
     path: '/common-converters/length-converter/',
     getParentRoute: () => rootRouteImport,
   } as any)
+const CommonConvertersLengthConverterPairRoute =
+  CommonConvertersLengthConverterPairRouteImport.update({
+    id: '/common-converters/length-converter/$pair',
+    path: '/common-converters/length-converter/$pair',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/common-converters/': typeof CommonConvertersIndexRoute
+  '/common-converters/length-converter/$pair': typeof CommonConvertersLengthConverterPairRoute
   '/common-converters/length-converter/': typeof CommonConvertersLengthConverterIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/common-converters': typeof CommonConvertersIndexRoute
+  '/common-converters/length-converter/$pair': typeof CommonConvertersLengthConverterPairRoute
   '/common-converters/length-converter': typeof CommonConvertersLengthConverterIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/common-converters/': typeof CommonConvertersIndexRoute
+  '/common-converters/length-converter/$pair': typeof CommonConvertersLengthConverterPairRoute
   '/common-converters/length-converter/': typeof CommonConvertersLengthConverterIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/common-converters/' | '/common-converters/length-converter/'
+    | '/'
+    | '/common-converters/'
+    | '/common-converters/length-converter/$pair'
+    | '/common-converters/length-converter/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/common-converters' | '/common-converters/length-converter'
+  to:
+    | '/'
+    | '/common-converters'
+    | '/common-converters/length-converter/$pair'
+    | '/common-converters/length-converter'
   id:
     | '__root__'
     | '/'
     | '/common-converters/'
+    | '/common-converters/length-converter/$pair'
     | '/common-converters/length-converter/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CommonConvertersIndexRoute: typeof CommonConvertersIndexRoute
+  CommonConvertersLengthConverterPairRoute: typeof CommonConvertersLengthConverterPairRoute
   CommonConvertersLengthConverterIndexRoute: typeof CommonConvertersLengthConverterIndexRoute
 }
 
@@ -88,12 +107,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommonConvertersLengthConverterIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/common-converters/length-converter/$pair': {
+      id: '/common-converters/length-converter/$pair'
+      path: '/common-converters/length-converter/$pair'
+      fullPath: '/common-converters/length-converter/$pair'
+      preLoaderRoute: typeof CommonConvertersLengthConverterPairRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CommonConvertersIndexRoute: CommonConvertersIndexRoute,
+  CommonConvertersLengthConverterPairRoute:
+    CommonConvertersLengthConverterPairRoute,
   CommonConvertersLengthConverterIndexRoute:
     CommonConvertersLengthConverterIndexRoute,
 }
