@@ -241,11 +241,14 @@ export function pairLabel(fromId: string, toId: string): string {
 
 /** Formats a factor the way engineering reference tables do. */
 export function formatFactor(value: number): string {
-  if (value !== 0 && (Math.abs(value) < 1e-4 || Math.abs(value) >= 1e12)) {
-    return value.toExponential(6).replace(/e([+-])(\d)$/, "E$10$2").replace("e", "E");
+  if (value !== 0 && (Math.abs(value) < 1e-4 || Math.abs(value) >= 1e13)) {
+    const [mantissa, exponent] = value.toExponential().split("e");
+    const m = mantissa!.includes(".") ? mantissa! : `${mantissa}.0`;
+    return `${m}E${exponent}`;
   }
   return String(value);
 }
+
 
 export function convertLength(amount: number, fromId: string, toId: string): number {
   const from = lengthUnitById.get(fromId);
