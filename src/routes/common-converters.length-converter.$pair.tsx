@@ -221,6 +221,42 @@ function PairPage() {
           All length units →
         </Link>
       </section>
+
+      <section className="mt-7">
+        <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">
+          Convert {unitTitle(from)} to all length units
+        </h2>
+        <table className="w-full border-t border-line text-[12px]">
+          <thead>
+            <tr className="text-[10px] tracking-[0.14em] text-mute uppercase">
+              <th className="border-b border-line py-1.5 text-left font-normal">
+                Conversion
+              </th>
+              <th className="border-b border-line py-1.5 text-right font-normal">
+                1 {unitShort(from)} equals
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {allTargets.map((u) => (
+              <tr key={u.id}>
+                <td className="border-b border-line py-1.5">
+                  <Link
+                    to="/common-converters/length-converter/$pair"
+                    params={{ pair: pairSlug(from.id, u.id) }}
+                    className="text-ox underline-offset-2 hover:underline"
+                  >
+                    {unitTitle(from)} to {u.name}
+                  </Link>
+                </td>
+                <td className="border-b border-line py-1.5 text-right whitespace-nowrap">
+                  {formatResult(convertLength(1, from.id, u.id))} {unitShort(u)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
     </main>
   );
 }
