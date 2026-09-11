@@ -77,21 +77,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Unitspeak — Unit Converters" },
+      {
+        name: "description",
+        content:
+          "Unitspeak converts between metric, imperial and scientific units with exact factors.",
+      },
+      { property: "og:site_name", content: "Unitspeak" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],
   }),
   shellComponent: RootShell,
@@ -119,8 +123,30 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="min-h-screen bg-paper text-ink">
+        <header className="border-b border-line">
+          <div className="mx-auto flex h-11 max-w-md items-center justify-between px-4">
+            <Link to="/" className="font-display text-[15px] font-semibold tracking-tight">
+              UNITSPEAK
+            </Link>
+            <span className="text-[10px] tracking-[0.2em] text-mute uppercase">v1.0</span>
+          </div>
+        </header>
+
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+
+        <footer className="mt-8 border-t border-line">
+          <div className="mx-auto max-w-md px-4 py-5 text-[11px] leading-relaxed text-mute">
+            <Link to="/" className="hover:underline">
+              Unitspeak
+            </Link>{" "}
+            — exact conversion factors across the SI, metric, imperial and historic
+            systems.
+          </div>
+        </footer>
+      </div>
     </QueryClientProvider>
   );
 }
+
