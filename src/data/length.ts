@@ -323,6 +323,8 @@ export function unitPlural(unit: Unit): string {
     "foot-us-survey": "feet (US survey)",
   };
   if (irregular[unit.id]) return irregular[unit.id]!;
+  // Names already ending in s/x/z or a sibilant read wrong with a bare "s".
+  if (/(s|x|z|ch|sh)$/i.test(unit.name)) return unit.name;
   if (/[a-z]$/.test(unit.name)) return `${unit.name}s`;
   return unit.name;
 }
