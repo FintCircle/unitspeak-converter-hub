@@ -140,7 +140,13 @@ function PairPage() {
         initialAmount="1"
         initialFrom={from.id}
         initialTo={to.id}
+        lockUnits
       />
+
+      <div className="mt-2 flex justify-end">
+        <SharePage title={pair.fullTitle} text={pair.description} />
+      </div>
+
 
       <section className="mt-6">
         <h1 className="font-display text-[19px] leading-tight font-semibold tracking-tight">
