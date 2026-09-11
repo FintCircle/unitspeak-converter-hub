@@ -262,7 +262,7 @@ export function formatResult(value: number): string {
   if (!isFinite(value)) return "—";
   if (value === 0) return "0";
   const abs = Math.abs(value);
-  if (abs >= 1e15 || abs < 1e-6) return value.toExponential(6);
+  if (abs >= 1e12 || abs < 1e-6) return value.toExponential(6);
   const rounded = Number(value.toPrecision(10));
   return String(rounded);
 }

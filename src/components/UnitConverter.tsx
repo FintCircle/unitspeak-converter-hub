@@ -126,15 +126,15 @@ export function UnitConverter({
               {valid ? result.toExponential(6) : ""}
             </span>
           </div>
-          <div className="flex items-baseline gap-1.5">
-            <span className="font-display text-[42px] leading-none font-semibold tracking-tight">
+          <div className="flex flex-wrap items-baseline gap-x-1.5">
+            <span className="font-display max-w-full text-[clamp(22px,8.5vw,42px)] leading-tight font-semibold tracking-tight break-all">
               {valid ? formatResult(result) : "—"}
             </span>
-            <span className="text-sm text-mute">
+            <span className="text-sm break-all text-mute">
               {toUnit ? unitShort(toUnit) : ""}
             </span>
           </div>
-          <div className="mt-1 text-[11px] text-mute">
+          <div className="mt-1 text-[11px] break-words text-mute">
             {valid
               ? `${formatResult(parsed)} ${unitShort(fromUnit!)} × ${formatResult(ratio)} = ${formatResult(result)} ${unitShort(toUnit!)}`
               : "Enter a number to convert."}
