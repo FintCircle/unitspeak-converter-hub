@@ -174,7 +174,7 @@ function PairPage() {
         <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">
           {pair.shortTitle} conversion table
         </h2>
-        <table className="w-full border-t border-line text-[12px]">
+        <table className="w-full table-fixed border-t border-line text-[12px]">
           <thead>
             <tr className="text-[10px] tracking-[0.14em] text-mute uppercase">
               <th className="border-b border-line py-1.5 text-left font-normal">
@@ -188,10 +188,10 @@ function PairPage() {
           <tbody>
             {pairTableAmounts.map((n) => (
               <tr key={n}>
-                <td className="border-b border-line py-1.5">
+                <td className="border-b border-line py-1.5 break-words">
                   {n} {unitShort(from)}
                 </td>
-                <td className="border-b border-line py-1.5 text-right">
+                <td className="border-b border-line py-1.5 text-right break-all">
                   {formatResult(convertLength(n, from.id, to.id))} {unitShort(to)}
                 </td>
               </tr>
@@ -244,7 +244,7 @@ function PairPage() {
         <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">
           Convert {unitTitle(from)} to all length units
         </h2>
-        <table className="w-full border-t border-line text-[12px]">
+        <table className="w-full table-fixed border-t border-line text-[12px]">
           <thead>
             <tr className="text-[10px] tracking-[0.14em] text-mute uppercase">
               <th className="border-b border-line py-1.5 text-left font-normal">
@@ -258,7 +258,7 @@ function PairPage() {
           <tbody>
             {allTargets.map((u) => (
               <tr key={u.id}>
-                <td className="border-b border-line py-1.5">
+                <td className="border-b border-line py-1.5 pr-2 break-words">
                   <Link
                     to="/common-converters/length-converter/$pair"
                     params={{ pair: pairSlug(from.id, u.id) }}
@@ -267,7 +267,7 @@ function PairPage() {
                     {unitTitle(from)} to {u.name}
                   </Link>
                 </td>
-                <td className="border-b border-line py-1.5 text-right whitespace-nowrap">
+                <td className="border-b border-line py-1.5 text-right break-all">
                   {formatResult(convertLength(1, from.id, u.id))} {unitShort(u)}
                 </td>
               </tr>
