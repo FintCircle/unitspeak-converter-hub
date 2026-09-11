@@ -164,5 +164,19 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
+    font-family: var(--font-mono);
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: tabular-nums;
   }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+  }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-ox) 20%, transparent);
+  }
+
 }
