@@ -15,6 +15,7 @@ import {
   unitTitle,
   type Unit,
 } from "@/data/length";
+import { unitArticle } from "@/data/unitArticles";
 
 type PairData = {
   from: Unit;
@@ -116,6 +117,8 @@ function PairPage() {
   const allTargets = lengthUnits
     .filter((u) => u.id !== from.id)
     .sort((a, b) => a.name.localeCompare(b.name));
+
+  const article = unitArticle(from);
 
 
   return (
