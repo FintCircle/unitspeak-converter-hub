@@ -1,4 +1,5 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
+import { ArrowLeftRight } from "lucide-react";
 import { SharePage } from "@/components/SharePage";
 import { UnitConverter } from "@/components/UnitConverter";
 import {
@@ -106,6 +107,7 @@ function PairNotFound() {
 
 function PairPage() {
   const { pair: slug } = Route.useParams();
+  const navigate = useNavigate();
   const pair = buildPair(slug);
   const { from, to, ratio } = pair;
 
@@ -152,7 +154,22 @@ function PairPage() {
         lockUnits
       />
 
-      <div className="mt-2 flex justify-end">
+      <div className="mt-2 flex items-center justify-end gap-2">
+        <button
+          type="button"
+          aria-label={`Swap to ${unitShort(to)} to ${unitShort(from)}`}
+          title={`Swap to ${unitShort(to)} to ${unitShort(from)}`}
+          onClick={() =>
+            navigate({
+              to: "/common-converters/length-converter/$pair",
+              params: { pair: pairSlug(to.id, from.id) },
+            })
+          }
+          className="inline-flex items-center gap-1.5 border border-line bg-panel px-2 py-1 text-[10px] tracking-[0.14em] text-mute uppercase hover:border-ox hover:text-ox"
+        >
+          <ArrowLeftRight size={12} />
+          Swap
+        </button>
         <SharePage title={pair.fullTitle} text={pair.description} />
       </div>
 
