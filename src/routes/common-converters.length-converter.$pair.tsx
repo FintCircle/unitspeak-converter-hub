@@ -113,6 +113,11 @@ function PairPage() {
     .filter(([f, t]) => f === from.id || t === to.id || f === to.id || t === from.id)
     .slice(0, 10);
 
+  const allTargets = lengthUnits
+    .filter((u) => u.id !== from.id)
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+
   return (
     <main className="mx-auto max-w-md px-4 pb-16">
       <nav className="pt-3 pb-2 text-[11px] text-mute">
