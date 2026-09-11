@@ -15,6 +15,7 @@ import {
   unitTitle,
   type Unit,
 } from "@/data/length";
+import { unitArticle } from "@/data/unitArticles";
 
 type PairData = {
   from: Unit;
@@ -117,6 +118,8 @@ function PairPage() {
     .filter((u) => u.id !== from.id)
     .sort((a, b) => a.name.localeCompare(b.name));
 
+  const article = unitArticle(from);
+
 
   return (
     <main className="mx-auto max-w-md px-4 pb-16">
@@ -195,6 +198,15 @@ function PairPage() {
             ))}
           </tbody>
         </table>
+      </section>
+
+      <section className="mt-7">
+        <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">{article.heading}</h2>
+        <div className="space-y-3 border-t border-line pt-3 text-[12.5px] leading-relaxed text-ink">
+          {article.paragraphs.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
       </section>
 
       <section className="mt-7">

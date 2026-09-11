@@ -12,9 +12,12 @@ export function SharePage({ title, text }: Props) {
 
   async function share() {
     const url = typeof window === "undefined" ? "" : window.location.href;
+    /** The page's meta title, so the receiver sees what the link is about. */
+    const shareTitle =
+      typeof document !== "undefined" && document.title ? document.title : title;
     try {
       if (typeof navigator !== "undefined" && navigator.share) {
-        await navigator.share({ title, text: text ?? title, url });
+        await navigator.share({ title: shareTitle, text: text ?? shareTitle, url });
         return;
       }
       await navigator.clipboard.writeText(url);
