@@ -14,6 +14,8 @@ type Props = {
   initialAmount: string;
   initialFrom: string;
   initialTo: string;
+  /** Hides the from/to pickers, e.g. on a fixed conversion-pair page. */
+  lockUnits?: boolean;
 };
 
 export function UnitConverter({
@@ -22,6 +24,7 @@ export function UnitConverter({
   initialAmount,
   initialFrom,
   initialTo,
+  lockUnits = false,
 }: Props) {
   const [amount, setAmount] = useState(initialAmount);
   const [from, setFrom] = useState(initialFrom);
