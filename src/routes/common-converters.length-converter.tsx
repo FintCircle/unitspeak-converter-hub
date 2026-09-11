@@ -9,19 +9,21 @@ import {
   unitLabel,
 } from "@/data/length";
 
-type LengthSearch = { from: string; to: string; amount: string };
+type LengthSearch = { from?: string; to?: string; amount?: string };
 
 export const Route = createFileRoute("/common-converters/length-converter")({
   validateSearch: (search: Record<string, unknown>): LengthSearch => {
-    const from = String(search.from ?? "meter");
-    const to = String(search.to ?? "foot");
-    const amount = String(search.amount ?? "1");
-    return {
-      from: lengthUnitById.has(from) ? from : "meter",
-      to: lengthUnitById.has(to) ? to : "foot",
-      amount: /^-?\d*\.?\d*$/.test(amount) && amount !== "" ? amount : "1",
-    };
+    const raw = search as Partial<Record<keyof LengthSearch, unknown>>;
+    const out: LengthSearch = {};
+    const from = raw["from"] === undefined ? undefined : String(raw["from"]);
+    const to = raw["to"] === undefined ? undefined : String(raw["to"]);
+    const amount = raw["amount"] === undefined ? undefined : String(raw["amount"]);
+    if (from && lengthUnitById.has(from)) out.from = from;
+    if (to && lengthUnitById.has(to)) out.to = to;
+    if (amount && /^-?\d*\.?\d+$/.test(amount)) out.amount = amount;
+    return out;
   },
+
   head: () => ({
     meta: [
       { title: "Length Converter — Convert Meters, Feet, Inches, Miles | Unitspeak" },
