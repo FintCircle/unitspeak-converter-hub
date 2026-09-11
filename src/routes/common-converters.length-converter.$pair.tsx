@@ -107,6 +107,7 @@ function PairNotFound() {
 
 function PairPage() {
   const { pair: slug } = Route.useParams();
+  const navigate = useNavigate();
   const pair = buildPair(slug);
   const { from, to, ratio } = pair;
 
