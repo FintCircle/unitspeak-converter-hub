@@ -56,9 +56,17 @@ function CommonConverters() {
               >
                 {converter.name}
               </Link>
+            ) : converter.href === "/common-converters/angle-converter" ? (
+              <Link
+                to="/common-converters/angle-converter"
+                className="text-[12.5px] underline-offset-2 hover:underline"
+              >
+                {converter.name}
+              </Link>
             ) : (
               <span className="text-[12.5px] text-mute">{converter.name}</span>
             )}
+
             <span className="shrink-0 text-[10px] tracking-[0.14em] text-mute uppercase">
               {converter.href ? "Live" : "Soon"}
             </span>

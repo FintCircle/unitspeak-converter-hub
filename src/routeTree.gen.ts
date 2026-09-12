@@ -15,6 +15,8 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as CommonConvertersIndexRouteImport } from './routes/common-converters.index'
+import { Route as CommonConvertersAngleConverterIndexRouteImport } from './routes/common-converters.angle-converter.index'
+import { Route as CommonConvertersAngleConverterPairRouteImport } from './routes/common-converters.angle-converter.$pair'
 import { Route as CommonConvertersLengthConverterIndexRouteImport } from './routes/common-converters.length-converter.index'
 import { Route as CommonConvertersLengthConverterPairRouteImport } from './routes/common-converters.length-converter.$pair'
 
@@ -48,6 +50,18 @@ const CommonConvertersIndexRoute = CommonConvertersIndexRouteImport.update({
   path: '/common-converters/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CommonConvertersAngleConverterIndexRoute =
+  CommonConvertersAngleConverterIndexRouteImport.update({
+    id: '/common-converters/angle-converter/',
+    path: '/common-converters/angle-converter/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CommonConvertersAngleConverterPairRoute =
+  CommonConvertersAngleConverterPairRouteImport.update({
+    id: '/common-converters/angle-converter/$pair',
+    path: '/common-converters/angle-converter/$pair',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CommonConvertersLengthConverterIndexRoute =
   CommonConvertersLengthConverterIndexRouteImport.update({
     id: '/common-converters/length-converter/',
@@ -68,7 +82,9 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/common-converters/': typeof CommonConvertersIndexRoute
+  '/common-converters/angle-converter/$pair': typeof CommonConvertersAngleConverterPairRoute
   '/common-converters/length-converter/$pair': typeof CommonConvertersLengthConverterPairRoute
+  '/common-converters/angle-converter/': typeof CommonConvertersAngleConverterIndexRoute
   '/common-converters/length-converter/': typeof CommonConvertersLengthConverterIndexRoute
 }
 export interface FileRoutesByTo {
@@ -78,7 +94,9 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/common-converters': typeof CommonConvertersIndexRoute
+  '/common-converters/angle-converter/$pair': typeof CommonConvertersAngleConverterPairRoute
   '/common-converters/length-converter/$pair': typeof CommonConvertersLengthConverterPairRoute
+  '/common-converters/angle-converter': typeof CommonConvertersAngleConverterIndexRoute
   '/common-converters/length-converter': typeof CommonConvertersLengthConverterIndexRoute
 }
 export interface FileRoutesById {
@@ -89,7 +107,9 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/common-converters/': typeof CommonConvertersIndexRoute
+  '/common-converters/angle-converter/$pair': typeof CommonConvertersAngleConverterPairRoute
   '/common-converters/length-converter/$pair': typeof CommonConvertersLengthConverterPairRoute
+  '/common-converters/angle-converter/': typeof CommonConvertersAngleConverterIndexRoute
   '/common-converters/length-converter/': typeof CommonConvertersLengthConverterIndexRoute
 }
 export interface FileRouteTypes {
@@ -101,7 +121,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/common-converters/'
+    | '/common-converters/angle-converter/$pair'
     | '/common-converters/length-converter/$pair'
+    | '/common-converters/angle-converter/'
     | '/common-converters/length-converter/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -111,7 +133,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/common-converters'
+    | '/common-converters/angle-converter/$pair'
     | '/common-converters/length-converter/$pair'
+    | '/common-converters/angle-converter'
     | '/common-converters/length-converter'
   id:
     | '__root__'
@@ -121,7 +145,9 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/terms'
     | '/common-converters/'
+    | '/common-converters/angle-converter/$pair'
     | '/common-converters/length-converter/$pair'
+    | '/common-converters/angle-converter/'
     | '/common-converters/length-converter/'
   fileRoutesById: FileRoutesById
 }
@@ -132,7 +158,9 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   CommonConvertersIndexRoute: typeof CommonConvertersIndexRoute
+  CommonConvertersAngleConverterPairRoute: typeof CommonConvertersAngleConverterPairRoute
   CommonConvertersLengthConverterPairRoute: typeof CommonConvertersLengthConverterPairRoute
+  CommonConvertersAngleConverterIndexRoute: typeof CommonConvertersAngleConverterIndexRoute
   CommonConvertersLengthConverterIndexRoute: typeof CommonConvertersLengthConverterIndexRoute
 }
 
@@ -180,6 +208,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommonConvertersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/common-converters/angle-converter/': {
+      id: '/common-converters/angle-converter/'
+      path: '/common-converters/angle-converter'
+      fullPath: '/common-converters/angle-converter/'
+      preLoaderRoute: typeof CommonConvertersAngleConverterIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/common-converters/angle-converter/$pair': {
+      id: '/common-converters/angle-converter/$pair'
+      path: '/common-converters/angle-converter/$pair'
+      fullPath: '/common-converters/angle-converter/$pair'
+      preLoaderRoute: typeof CommonConvertersAngleConverterPairRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/common-converters/length-converter/': {
       id: '/common-converters/length-converter/'
       path: '/common-converters/length-converter'
@@ -204,8 +246,12 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   CommonConvertersIndexRoute: CommonConvertersIndexRoute,
+  CommonConvertersAngleConverterPairRoute:
+    CommonConvertersAngleConverterPairRoute,
   CommonConvertersLengthConverterPairRoute:
     CommonConvertersLengthConverterPairRoute,
+  CommonConvertersAngleConverterIndexRoute:
+    CommonConvertersAngleConverterIndexRoute,
   CommonConvertersLengthConverterIndexRoute:
     CommonConvertersLengthConverterIndexRoute,
 }
