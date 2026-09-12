@@ -92,3 +92,19 @@ export function parseAnglePairSlug(slug: string): { from: string; to: string } |
   }
   return null;
 }
+
+/** Compact label for tables; punctuation symbols read badly on their own. */
+export function angleShort(unit: Unit): string {
+  if (unit.id === "minute") return "arcmin";
+  if (unit.id === "second") return "arcsec";
+  if (unit.id === "grad") return "grad";
+  return unit.symbol ? unit.symbol.split(",")[0]!.trim() : unit.name;
+}
+
+/** Plain pair label, e.g. "rad to °". */
+export function anglePairLabel(fromId: string, toId: string): string {
+  const from = angleUnitById.get(fromId);
+  const to = angleUnitById.get(toId);
+  if (!from || !to) return "";
+  return `${angleShort(from)} to ${angleShort(to)}`;
+}
