@@ -16,7 +16,7 @@ export const categories: ConverterCategory[] = [
     name: "Common Converters",
     slug: "common-converters",
     converters: [
-      { name: "Angle Converter" },
+      { name: "Angle Converter", href: "/common-converters/angle-converter" },
       { name: "Area Converter" },
       { name: "Case Converter" },
       { name: "Currency Converter" },

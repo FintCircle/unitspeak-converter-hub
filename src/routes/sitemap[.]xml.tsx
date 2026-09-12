@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { lengthUnits, pairSlug } from "@/data/length";
+import { angleUnits } from "@/data/angle";
 
 const SITE = "https://www.unitspeak.com";
 
@@ -12,6 +13,7 @@ function buildSitemap(): string {
     urlEntry("/", "1.0"),
     urlEntry("/common-converters", "0.9"),
     urlEntry("/common-converters/length-converter", "0.9"),
+    urlEntry("/common-converters/angle-converter", "0.9"),
     urlEntry("/about", "0.4"),
     urlEntry("/terms", "0.3"),
     urlEntry("/privacy", "0.3"),
@@ -26,6 +28,17 @@ function buildSitemap(): string {
       );
     }
   }
+
+  // Every angle conversion-pair page.
+  for (const from of angleUnits) {
+    for (const to of angleUnits) {
+      if (from.id === to.id) continue;
+      entries.push(
+        urlEntry(`/common-converters/angle-converter/${pairSlug(from.id, to.id)}`, "0.6"),
+      );
+    }
+  }
+
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join("\n")}\n</urlset>\n`;
 }

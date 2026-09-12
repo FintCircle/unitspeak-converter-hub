@@ -1,12 +1,5 @@
-import { useState } from "react";
-import {
-  convertLength,
-  formatResult,
-  lengthUnitById,
-  unitLabel,
-  unitShort,
-  type Unit,
-} from "@/data/length";
+import { useMemo, useState } from "react";
+import { formatResult, unitLabel, unitShort, type Unit } from "@/data/length";
 
 type Props = {
   title: string;
@@ -30,12 +23,14 @@ export function UnitConverter({
   const [from, setFrom] = useState(initialFrom);
   const [to, setTo] = useState(initialTo);
 
-  const fromUnit = lengthUnitById.get(from);
-  const toUnit = lengthUnitById.get(to);
+  const unitById = useMemo(() => new Map(units.map((u) => [u.id, u])), [units]);
+  const fromUnit = unitById.get(from);
+  const toUnit = unitById.get(to);
   const parsed = Number(amount.replace(/,/g, ""));
   const valid = amount.trim() !== "" && isFinite(parsed) && !!fromUnit && !!toUnit;
-  const result = valid ? convertLength(parsed, from, to) : NaN;
   const ratio = valid ? fromUnit!.factor / toUnit!.factor : NaN;
+  const result = valid ? parsed * ratio : NaN;
+
 
   return (
     <section className="border border-line bg-panel ring-1 ring-black/5">
