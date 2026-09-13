@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { lengthUnits, pairSlug } from "@/data/length";
 import { angleUnits } from "@/data/angle";
+import { areaUnits } from "@/data/area";
 
 const SITE = "https://www.unitspeak.com";
 
@@ -14,6 +15,7 @@ function buildSitemap(): string {
     urlEntry("/common-converters", "0.9"),
     urlEntry("/common-converters/length-converter", "0.9"),
     urlEntry("/common-converters/angle-converter", "0.9"),
+    urlEntry("/common-converters/area-converter", "0.9"),
     urlEntry("/about", "0.4"),
     urlEntry("/terms", "0.3"),
     urlEntry("/privacy", "0.3"),
@@ -35,6 +37,16 @@ function buildSitemap(): string {
       if (from.id === to.id) continue;
       entries.push(
         urlEntry(`/common-converters/angle-converter/${pairSlug(from.id, to.id)}`, "0.6"),
+      );
+    }
+  }
+
+  // Every area conversion-pair page.
+  for (const from of areaUnits) {
+    for (const to of areaUnits) {
+      if (from.id === to.id) continue;
+      entries.push(
+        urlEntry(`/common-converters/area-converter/${pairSlug(from.id, to.id)}`, "0.6"),
       );
     }
   }

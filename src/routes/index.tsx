@@ -45,8 +45,8 @@ function Home() {
           Unit converters — full versions
         </h2>
         <p className="mb-4 text-[11px] text-mute">
-          {totalConverterCount} converters, grouped by field. Length and angle are live;
-          the rest arrive in the next batches.
+          {totalConverterCount} converters, grouped by field. Length, angle and area are
+          live; the rest arrive in the next batches.
         </p>
 
         {categories.map((category) => (
@@ -68,6 +68,14 @@ function Home() {
                   <Link
                     key={converter.name}
                     to="/common-converters/angle-converter"
+                    className="block py-1.5 text-[12px] break-inside-avoid text-ink underline-offset-2 hover:underline"
+                  >
+                    {converter.name}
+                  </Link>
+                ) : converter.href === "/common-converters/area-converter" ? (
+                  <Link
+                    key={converter.name}
+                    to="/common-converters/area-converter"
                     className="block py-1.5 text-[12px] break-inside-avoid text-ink underline-offset-2 hover:underline"
                   >
                     {converter.name}
