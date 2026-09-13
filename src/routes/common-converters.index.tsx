@@ -63,6 +63,13 @@ function CommonConverters() {
               >
                 {converter.name}
               </Link>
+            ) : converter.href === "/common-converters/area-converter" ? (
+              <Link
+                to="/common-converters/area-converter"
+                className="text-[12.5px] underline-offset-2 hover:underline"
+              >
+                {converter.name}
+              </Link>
             ) : (
               <span className="text-[12.5px] text-mute">{converter.name}</span>
             )}
