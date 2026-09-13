@@ -17,6 +17,8 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as CommonConvertersIndexRouteImport } from './routes/common-converters.index'
 import { Route as CommonConvertersAngleConverterIndexRouteImport } from './routes/common-converters.angle-converter.index'
 import { Route as CommonConvertersAngleConverterPairRouteImport } from './routes/common-converters.angle-converter.$pair'
+import { Route as CommonConvertersAreaConverterIndexRouteImport } from './routes/common-converters.area-converter.index'
+import { Route as CommonConvertersAreaConverterPairRouteImport } from './routes/common-converters.area-converter.$pair'
 import { Route as CommonConvertersLengthConverterIndexRouteImport } from './routes/common-converters.length-converter.index'
 import { Route as CommonConvertersLengthConverterPairRouteImport } from './routes/common-converters.length-converter.$pair'
 
@@ -62,6 +64,18 @@ const CommonConvertersAngleConverterPairRoute =
     path: '/common-converters/angle-converter/$pair',
     getParentRoute: () => rootRouteImport,
   } as any)
+const CommonConvertersAreaConverterIndexRoute =
+  CommonConvertersAreaConverterIndexRouteImport.update({
+    id: '/common-converters/area-converter/',
+    path: '/common-converters/area-converter/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CommonConvertersAreaConverterPairRoute =
+  CommonConvertersAreaConverterPairRouteImport.update({
+    id: '/common-converters/area-converter/$pair',
+    path: '/common-converters/area-converter/$pair',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const CommonConvertersLengthConverterIndexRoute =
   CommonConvertersLengthConverterIndexRouteImport.update({
     id: '/common-converters/length-converter/',
@@ -83,8 +97,10 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/common-converters/': typeof CommonConvertersIndexRoute
   '/common-converters/angle-converter/$pair': typeof CommonConvertersAngleConverterPairRoute
+  '/common-converters/area-converter/$pair': typeof CommonConvertersAreaConverterPairRoute
   '/common-converters/length-converter/$pair': typeof CommonConvertersLengthConverterPairRoute
   '/common-converters/angle-converter/': typeof CommonConvertersAngleConverterIndexRoute
+  '/common-converters/area-converter/': typeof CommonConvertersAreaConverterIndexRoute
   '/common-converters/length-converter/': typeof CommonConvertersLengthConverterIndexRoute
 }
 export interface FileRoutesByTo {
@@ -95,8 +111,10 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/common-converters': typeof CommonConvertersIndexRoute
   '/common-converters/angle-converter/$pair': typeof CommonConvertersAngleConverterPairRoute
+  '/common-converters/area-converter/$pair': typeof CommonConvertersAreaConverterPairRoute
   '/common-converters/length-converter/$pair': typeof CommonConvertersLengthConverterPairRoute
   '/common-converters/angle-converter': typeof CommonConvertersAngleConverterIndexRoute
+  '/common-converters/area-converter': typeof CommonConvertersAreaConverterIndexRoute
   '/common-converters/length-converter': typeof CommonConvertersLengthConverterIndexRoute
 }
 export interface FileRoutesById {
@@ -108,8 +126,10 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/common-converters/': typeof CommonConvertersIndexRoute
   '/common-converters/angle-converter/$pair': typeof CommonConvertersAngleConverterPairRoute
+  '/common-converters/area-converter/$pair': typeof CommonConvertersAreaConverterPairRoute
   '/common-converters/length-converter/$pair': typeof CommonConvertersLengthConverterPairRoute
   '/common-converters/angle-converter/': typeof CommonConvertersAngleConverterIndexRoute
+  '/common-converters/area-converter/': typeof CommonConvertersAreaConverterIndexRoute
   '/common-converters/length-converter/': typeof CommonConvertersLengthConverterIndexRoute
 }
 export interface FileRouteTypes {
@@ -122,8 +142,10 @@ export interface FileRouteTypes {
     | '/terms'
     | '/common-converters/'
     | '/common-converters/angle-converter/$pair'
+    | '/common-converters/area-converter/$pair'
     | '/common-converters/length-converter/$pair'
     | '/common-converters/angle-converter/'
+    | '/common-converters/area-converter/'
     | '/common-converters/length-converter/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -134,8 +156,10 @@ export interface FileRouteTypes {
     | '/terms'
     | '/common-converters'
     | '/common-converters/angle-converter/$pair'
+    | '/common-converters/area-converter/$pair'
     | '/common-converters/length-converter/$pair'
     | '/common-converters/angle-converter'
+    | '/common-converters/area-converter'
     | '/common-converters/length-converter'
   id:
     | '__root__'
@@ -146,8 +170,10 @@ export interface FileRouteTypes {
     | '/terms'
     | '/common-converters/'
     | '/common-converters/angle-converter/$pair'
+    | '/common-converters/area-converter/$pair'
     | '/common-converters/length-converter/$pair'
     | '/common-converters/angle-converter/'
+    | '/common-converters/area-converter/'
     | '/common-converters/length-converter/'
   fileRoutesById: FileRoutesById
 }
@@ -159,8 +185,10 @@ export interface RootRouteChildren {
   TermsRoute: typeof TermsRoute
   CommonConvertersIndexRoute: typeof CommonConvertersIndexRoute
   CommonConvertersAngleConverterPairRoute: typeof CommonConvertersAngleConverterPairRoute
+  CommonConvertersAreaConverterPairRoute: typeof CommonConvertersAreaConverterPairRoute
   CommonConvertersLengthConverterPairRoute: typeof CommonConvertersLengthConverterPairRoute
   CommonConvertersAngleConverterIndexRoute: typeof CommonConvertersAngleConverterIndexRoute
+  CommonConvertersAreaConverterIndexRoute: typeof CommonConvertersAreaConverterIndexRoute
   CommonConvertersLengthConverterIndexRoute: typeof CommonConvertersLengthConverterIndexRoute
 }
 
@@ -222,6 +250,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommonConvertersAngleConverterPairRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/common-converters/area-converter/': {
+      id: '/common-converters/area-converter/'
+      path: '/common-converters/area-converter'
+      fullPath: '/common-converters/area-converter/'
+      preLoaderRoute: typeof CommonConvertersAreaConverterIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/common-converters/area-converter/$pair': {
+      id: '/common-converters/area-converter/$pair'
+      path: '/common-converters/area-converter/$pair'
+      fullPath: '/common-converters/area-converter/$pair'
+      preLoaderRoute: typeof CommonConvertersAreaConverterPairRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/common-converters/length-converter/': {
       id: '/common-converters/length-converter/'
       path: '/common-converters/length-converter'
@@ -248,10 +290,14 @@ const rootRouteChildren: RootRouteChildren = {
   CommonConvertersIndexRoute: CommonConvertersIndexRoute,
   CommonConvertersAngleConverterPairRoute:
     CommonConvertersAngleConverterPairRoute,
+  CommonConvertersAreaConverterPairRoute:
+    CommonConvertersAreaConverterPairRoute,
   CommonConvertersLengthConverterPairRoute:
     CommonConvertersLengthConverterPairRoute,
   CommonConvertersAngleConverterIndexRoute:
     CommonConvertersAngleConverterIndexRoute,
+  CommonConvertersAreaConverterIndexRoute:
+    CommonConvertersAreaConverterIndexRoute,
   CommonConvertersLengthConverterIndexRoute:
     CommonConvertersLengthConverterIndexRoute,
 }
