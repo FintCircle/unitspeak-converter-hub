@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { formatResult, unitLabel, unitShort, type Unit } from "@/data/length";
+import { UnitCombobox } from "@/components/UnitCombobox";
+import { formatResult, unitShort, type Unit } from "@/data/length";
 
 type Props = {
   title: string;
@@ -57,26 +58,13 @@ export function UnitConverter({
 
         {!lockUnits && (
           <div className="mt-3 grid grid-cols-[1fr_auto_1fr] items-end gap-2">
-            <div>
-              <label
-                htmlFor="from-unit"
-                className="mb-1 block text-[10px] tracking-[0.18em] text-mute uppercase"
-              >
-                From
-              </label>
-              <select
-                id="from-unit"
-                value={from}
-                onChange={(e) => setFrom(e.target.value)}
-                className="w-full border border-line bg-paper px-2 py-2.5 text-[13px] text-ink outline-none focus:border-ox"
-              >
-                {units.map((u) => (
-                  <option key={u.id} value={u.id}>
-                    {unitLabel(u)}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <UnitCombobox
+              id="from-unit"
+              label="From"
+              units={units}
+              value={from}
+              onChange={setFrom}
+            />
             <button
               type="button"
               aria-label="Swap units"
@@ -88,28 +76,16 @@ export function UnitConverter({
             >
               ⇄
             </button>
-            <div>
-              <label
-                htmlFor="to-unit"
-                className="mb-1 block text-[10px] tracking-[0.18em] text-mute uppercase"
-              >
-                To
-              </label>
-              <select
-                id="to-unit"
-                value={to}
-                onChange={(e) => setTo(e.target.value)}
-                className="w-full border border-line bg-paper px-2 py-2.5 text-[13px] text-ink outline-none focus:border-ox"
-              >
-                {units.map((u) => (
-                  <option key={u.id} value={u.id}>
-                    {unitLabel(u)}
-                  </option>
-                ))}
-              </select>
-            </div>
+            <UnitCombobox
+              id="to-unit"
+              label="To"
+              units={units}
+              value={to}
+              onChange={setTo}
+            />
           </div>
         )}
+
 
 
         <div className="mt-4 border-t border-line pt-3">
