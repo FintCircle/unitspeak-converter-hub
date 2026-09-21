@@ -31,7 +31,7 @@ export const categories: ConverterCategory[] = [
       { name: "Speed Converter" },
       { name: "Temperature Converter" },
       { name: "Time Converter" },
-      { name: "Volume Converter" },
+      { name: "Volume Converter", href: "/common-converters/volume-converter" },
       { name: "Weight and Mass Converter" },
     ],
   },
