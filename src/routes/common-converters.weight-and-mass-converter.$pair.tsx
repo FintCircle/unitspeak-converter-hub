@@ -3,36 +3,37 @@ import { ArrowLeftRight } from "lucide-react";
 import { SharePage } from "@/components/SharePage";
 import { UnitConverter } from "@/components/UnitConverter";
 import {
-  convertVolume,
-  formatVolumeFactor,
-  parseVolumePairSlug,
-  volumePairSlug,
-  volumePairTableAmounts,
-  volumePlural,
-  volumeShort,
-  volumeTitle,
-  volumeUnitById,
-  volumeUnits,
-  popularVolumeConversions,
-} from "@/data/volume";
+  convertWeight,
+  formatWeightFactor,
+  parseWeightPairSlug,
+  popularWeightConversions,
+  weightPairSlug,
+  weightPairTableAmounts,
+  weightPlural,
+  weightShort,
+  weightTitle,
+  weightUnitById,
+  weightUnits,
+} from "@/data/weight";
 
 function getPair(slug: string) {
-  const parsed = parseVolumePairSlug(slug);
+  const parsed = parseWeightPairSlug(slug);
   if (!parsed) throw notFound();
-  const from = volumeUnitById.get(parsed.from)!;
-  const to = volumeUnitById.get(parsed.to)!;
+  const from = weightUnitById.get(parsed.from)!;
+  const to = weightUnitById.get(parsed.to)!;
   const ratio = from.factor / to.factor;
   return {
     from,
     to,
     ratio,
-    shortTitle: `${volumeShort(from)} to ${volumeShort(to)}`,
-    fullTitle: `Convert ${volumeTitle(from)} to ${volumeTitle(to)} (${volumeShort(from)} to ${volumeShort(to)})`,
-    slug: volumePairSlug(from.id, to.id),
-    description: `1 ${from.name} = ${formatVolumeFactor(ratio)} ${volumePlural(to)}. Convert ${volumePlural(from)} to ${volumePlural(to)} instantly, with the exact factor and a reference table of common values.`,
+    shortTitle: `${weightShort(from)} to ${weightShort(to)}`,
+    fullTitle: `Convert ${weightTitle(from)} to ${weightTitle(to)} (${weightShort(from)} to ${weightShort(to)})`,
+    slug: weightPairSlug(from.id, to.id),
+    description: `1 ${from.name} = ${formatWeightFactor(ratio)} ${weightPlural(to)}. Convert ${weightPlural(from)} to ${weightPlural(to)} instantly, with the exact factor and a reference table of common values.`,
   };
 }
-export const Route = createFileRoute("/common-converters/volume-converter/$pair")({
+
+export const Route = createFileRoute("/common-converters/weight-and-mass-converter/$pair")({
   loader: ({ params }) => {
     const pair = getPair(params.pair);
     return {
@@ -52,7 +53,10 @@ export const Route = createFileRoute("/common-converters/volume-converter/$pair"
             { property: "og:description", content: loaderData.description },
           ],
           links: [
-            { rel: "canonical", href: `/common-converters/volume-converter/${loaderData.slug}` },
+            {
+              rel: "canonical",
+              href: `/common-converters/weight-and-mass-converter/${loaderData.slug}`,
+            },
           ],
         }
       : {
@@ -64,6 +68,7 @@ export const Route = createFileRoute("/common-converters/volume-converter/$pair"
   notFoundComponent: PairNotFound,
   component: PairPage,
 });
+
 function PairNotFound() {
   return (
     <main className="mx-auto max-w-md px-4 py-10">
@@ -71,25 +76,57 @@ function PairNotFound() {
       <p className="mt-2 text-[12px] text-mute">
         That unit pair doesn&apos;t exist. Pick two units on the{" "}
         <Link
-          to="/common-converters/volume-converter"
+          to="/common-converters/weight-and-mass-converter"
           className="text-ox underline-offset-2 hover:underline"
         >
-          volume converter
+          weight and mass converter
         </Link>
         .
       </p>
     </main>
   );
 }
+
 function PairPage() {
   const { pair: slug } = Route.useParams();
   const navigate = useNavigate();
   const pair = getPair(slug);
   const { from, to, ratio } = pair;
-  const related = popularVolumeConversions
+  const related = popularWeightConversions
+    .map(([f, t]) => {
+      const fUnit = weightUnitById.get(
+        f === "kg"
+          ? "kilogram"
+          : f === "lbs"
+            ? "pound"
+            : f === "g"
+              ? "gram"
+              : f === "oz"
+                ? "ounce"
+                : f === "mg"
+                  ? "milligram"
+                  : f,
+      );
+      const tUnit = weightUnitById.get(
+        t === "kg"
+          ? "kilogram"
+          : t === "lbs"
+            ? "pound"
+            : t === "g"
+              ? "gram"
+              : t === "oz"
+                ? "ounce"
+                : t === "mg"
+                  ? "milligram"
+                  : t,
+      );
+      return fUnit && tUnit ? [fUnit.id, tUnit.id] : null;
+    })
+    .filter((p): p is [string, string] => p !== null)
     .filter(([f, t]) => !(f === from.id && t === to.id))
     .filter(([f, t]) => f === from.id || t === to.id || f === to.id || t === from.id)
     .slice(0, 10);
+
   return (
     <main className="mx-auto max-w-md px-4 pb-16">
       <nav className="pt-3 pb-2 text-[11px] text-mute">
@@ -102,32 +139,34 @@ function PairPage() {
         </Link>
         <span className="mx-1.5">/</span>
         <Link
-          to="/common-converters/volume-converter"
+          to="/common-converters/weight-and-mass-converter"
           className="underline-offset-2 hover:underline"
         >
-          Volume
+          Weight and Mass
         </Link>
         <span className="mx-1.5">/</span>
         <span className="text-ink">{pair.shortTitle}</span>
       </nav>
+
       <UnitConverter
         key={pair.slug}
         title={pair.shortTitle}
-        units={volumeUnits}
+        units={weightUnits}
         initialAmount="1"
         initialFrom={from.id}
         initialTo={to.id}
         lockUnits
       />
+
       <div className="mt-2 flex items-center justify-end gap-2">
         <button
           type="button"
-          aria-label={`Swap to ${volumeShort(to)} to ${volumeShort(from)}`}
+          aria-label={`Swap to ${weightShort(to)} to ${weightShort(from)}`}
           title="Swap units"
           onClick={() =>
             navigate({
-              to: "/common-converters/volume-converter/$pair",
-              params: { pair: volumePairSlug(to.id, from.id) },
+              to: "/common-converters/weight-and-mass-converter/$pair",
+              params: { pair: weightPairSlug(to.id, from.id) },
             })
           }
           className="inline-flex items-center gap-1.5 border border-line bg-panel px-2 py-1 text-[10px] tracking-[0.14em] text-mute uppercase hover:border-ox hover:text-ox"
@@ -137,6 +176,7 @@ function PairPage() {
         </button>
         <SharePage title={pair.fullTitle} text={pair.description} />
       </div>
+
       <section className="mt-6">
         <h1 className="font-display text-[19px] leading-tight font-semibold tracking-tight">
           {pair.fullTitle}
@@ -145,10 +185,11 @@ function PairPage() {
         <div className="mt-3 border border-line bg-panel px-3 py-2 text-[12px]">
           <div className="text-[10px] tracking-[0.18em] text-mute uppercase">Formula</div>
           <div className="mt-1 break-words">
-            {volumePlural(to)} = {volumePlural(from)} × {formatVolumeFactor(ratio)}
+            {weightPlural(to)} = {weightPlural(from)} × {formatWeightFactor(ratio)}
           </div>
         </div>
       </section>
+
       <section className="mt-7">
         <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">
           {pair.shortTitle} conversion table
@@ -157,53 +198,54 @@ function PairPage() {
           <thead>
             <tr className="text-[10px] tracking-[0.14em] text-mute uppercase">
               <th className="border-b border-line py-1.5 text-left font-normal">
-                {volumeShort(from)}
+                {weightShort(from)}
               </th>
               <th className="border-b border-line py-1.5 text-right font-normal">
-                {volumeShort(to)}
+                {weightShort(to)}
               </th>
             </tr>
           </thead>
           <tbody>
-            {volumePairTableAmounts.map((n) => (
+            {weightPairTableAmounts.map((n) => (
               <tr key={n}>
                 <td className="border-b border-line py-1.5">
-                  {n} {volumeShort(from)}
+                  {n} {weightShort(from)}
                 </td>
                 <td className="border-b border-line py-1.5 text-right break-all">
-                  {formatVolumeFactor(convertVolume(n, from.id, to.id))} {volumeShort(to)}
+                  {formatWeightFactor(convertWeight(n, from.id, to.id))} {weightShort(to)}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </section>
+
       <section className="mt-7">
         <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">Related conversions</h2>
         <div className="grid grid-cols-2 gap-x-3 border-t border-line">
           <Link
-            to="/common-converters/volume-converter/$pair"
-            params={{ pair: volumePairSlug(to.id, from.id) }}
+            to="/common-converters/weight-and-mass-converter/$pair"
+            params={{ pair: weightPairSlug(to.id, from.id) }}
             className="border-b border-line py-2 text-[12px] text-ox underline-offset-2 hover:underline"
           >
-            {volumeShort(to)} to {volumeShort(from)}
+            {weightShort(to)} to {weightShort(from)}
           </Link>
           {related.map(([f, t]) => (
             <Link
               key={`${f}-${t}`}
-              to="/common-converters/volume-converter/$pair"
-              params={{ pair: volumePairSlug(f, t) }}
+              to="/common-converters/weight-and-mass-converter/$pair"
+              params={{ pair: weightPairSlug(f, t) }}
               className="border-b border-line py-2 text-[12px] text-ink underline-offset-2 hover:underline"
             >
-              {volumeShort(volumeUnitById.get(f)!)} to {volumeShort(volumeUnitById.get(t)!)}
+              {weightShort(weightUnitById.get(f)!)} to {weightShort(weightUnitById.get(t)!)}
             </Link>
           ))}
         </div>
         <Link
-          to="/common-converters/volume-converter"
+          to="/common-converters/weight-and-mass-converter"
           className="mt-3 inline-block text-[11px] text-ox underline-offset-2 hover:underline"
         >
-          All volume units →
+          All weight and mass units →
         </Link>
       </section>
     </main>

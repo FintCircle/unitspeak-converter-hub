@@ -114,10 +114,10 @@ function AreaConverterPage() {
           ))}
         </ul>
         <p className="mt-3 text-[11px] leading-relaxed text-mute">
-          All factors are expressed against the {unitLabel(base)}, the SI derived unit of
-          area — the area of a square one meter on each side. Land units like the hectare
-          ({areaShort(areaUnitById.get("hectare")!)}) and acre ({areaShort(areaUnitById.get("acre")!)}
-          ) are built on top of it.
+          All factors are expressed against the {unitLabel(base)}, the SI derived unit of area — the
+          area of a square one meter on each side. Land units like the hectare (
+          {areaShort(areaUnitById.get("hectare")!)}) and acre (
+          {areaShort(areaUnitById.get("acre")!)}) are built on top of it.
         </p>
       </section>
     </main>

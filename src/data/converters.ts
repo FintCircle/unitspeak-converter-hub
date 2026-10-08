@@ -32,7 +32,7 @@ export const categories: ConverterCategory[] = [
       { name: "Temperature Converter" },
       { name: "Time Converter" },
       { name: "Volume Converter", href: "/common-converters/volume-converter" },
-      { name: "Weight and Mass Converter" },
+      { name: "Weight and Mass Converter", href: "/common-converters/weight-and-mass-converter" },
     ],
   },
   {
@@ -146,7 +146,4 @@ export const categories: ConverterCategory[] = [
   },
 ];
 
-export const totalConverterCount = categories.reduce(
-  (n, c) => n + c.converters.length,
-  0,
-);
+export const totalConverterCount = categories.reduce((n, c) => n + c.converters.length, 0);

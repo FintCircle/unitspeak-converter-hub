@@ -3,6 +3,7 @@ import { lengthUnits, pairSlug } from "@/data/length";
 import { angleUnits } from "@/data/angle";
 import { areaUnits } from "@/data/area";
 import { volumeUnits, volumePairSlug } from "@/data/volume";
+import { weightUnits, weightPairSlug } from "@/data/weight";
 
 const SITE = "https://www.unitspeak.com";
 
@@ -18,6 +19,7 @@ function buildSitemap(): string {
     urlEntry("/common-converters/angle-converter", "0.9"),
     urlEntry("/common-converters/area-converter", "0.9"),
     urlEntry("/common-converters/volume-converter", "0.9"),
+    urlEntry("/common-converters/weight-and-mass-converter", "0.9"),
     urlEntry("/about", "0.4"),
     urlEntry("/terms", "0.3"),
     urlEntry("/privacy", "0.3"),
@@ -53,10 +55,24 @@ function buildSitemap(): string {
     }
   }
 
-
   for (const from of volumeUnits) {
     for (const to of volumeUnits) {
-      if (from.id !== to.id) entries.push(urlEntry(`/common-converters/volume-converter/${volumePairSlug(from.id, to.id)}`, "0.6"));
+      if (from.id !== to.id)
+        entries.push(
+          urlEntry(`/common-converters/volume-converter/${volumePairSlug(from.id, to.id)}`, "0.6"),
+        );
+    }
+  }
+
+  for (const from of weightUnits) {
+    for (const to of weightUnits) {
+      if (from.id !== to.id)
+        entries.push(
+          urlEntry(
+            `/common-converters/weight-and-mass-converter/${weightPairSlug(from.id, to.id)}`,
+            "0.6",
+          ),
+        );
     }
   }
 

@@ -36,28 +36,26 @@ function TermsPage() {
 
       <div className="mt-4 space-y-3 border-t border-line pt-4 text-[12.5px] leading-relaxed">
         <p>
-          By using Unitspeak you accept these terms. If you do not agree with them, please
-          do not use the site.
+          By using Unitspeak you accept these terms. If you do not agree with them, please do not
+          use the site.
         </p>
         <h2 className="pt-2 text-[12px] tracking-[0.12em] uppercase">Use of the site</h2>
         <p>
-          Unitspeak is free to use for personal, educational and commercial reference. You
-          may quote or link to individual conversion pages. You may not scrape the site at
-          a rate that degrades it for other people, or republish it wholesale as a
-          competing copy.
+          Unitspeak is free to use for personal, educational and commercial reference. You may quote
+          or link to individual conversion pages. You may not scrape the site at a rate that
+          degrades it for other people, or republish it wholesale as a competing copy.
         </p>
         <h2 className="pt-2 text-[12px] tracking-[0.12em] uppercase">Accuracy</h2>
         <p>
-          Conversion factors are taken from published definitions and checked carefully,
-          and results are rounded for display. Even so, the site is provided "as is",
-          without warranty of any kind. Do not rely on it alone for engineering,
-          medical, legal, financial or safety-critical work — verify against the relevant
-          standard.
+          Conversion factors are taken from published definitions and checked carefully, and results
+          are rounded for display. Even so, the site is provided "as is", without warranty of any
+          kind. Do not rely on it alone for engineering, medical, legal, financial or
+          safety-critical work — verify against the relevant standard.
         </p>
         <h2 className="pt-2 text-[12px] tracking-[0.12em] uppercase">Liability</h2>
         <p>
-          To the extent permitted by law, Unitspeak is not liable for any loss or damage
-          arising from use of the site or reliance on its results.
+          To the extent permitted by law, Unitspeak is not liable for any loss or damage arising
+          from use of the site or reliance on its results.
         </p>
         <h2 className="pt-2 text-[12px] tracking-[0.12em] uppercase">Changes</h2>
         <p>

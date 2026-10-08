@@ -16,26 +16,18 @@ export function UnitCombobox({ id, label, units, value, onChange }: Props) {
   const [activeIndex, setActiveIndex] = useState(0);
   const wrapRef = useRef<HTMLDivElement>(null);
 
-  const selected = useMemo(
-    () => units.find((u) => u.id === value) ?? null,
-    [units, value],
-  );
+  const selected = useMemo(() => units.find((u) => u.id === value) ?? null, [units, value]);
 
   const suggestions = useMemo(() => {
     const needle = query.trim().toLowerCase();
     const matches = units.filter((unit) => {
       if (!needle) return true;
-      return [unit.name, unit.symbol ?? "", unit.id]
-        .join(" ")
-        .toLowerCase()
-        .includes(needle);
+      return [unit.name, unit.symbol ?? "", unit.id].join(" ").toLowerCase().includes(needle);
     });
     if (!needle) return matches;
     return matches.sort((a, b) => {
       const rank = (unit: Unit) => {
-        const values = [unit.name, unit.symbol ?? "", unit.id].map((v) =>
-          v.toLowerCase(),
-        );
+        const values = [unit.name, unit.symbol ?? "", unit.id].map((v) => v.toLowerCase());
         if (values.includes(needle)) return 0;
         if (values.some((v) => v.startsWith(needle))) return 1;
         return 2;
@@ -93,10 +85,7 @@ export function UnitCombobox({ id, label, units, value, onChange }: Props) {
 
   return (
     <div className="relative min-w-0" ref={wrapRef}>
-      <label
-        htmlFor={id}
-        className="mb-1 block text-[10px] tracking-[0.18em] text-mute uppercase"
-      >
+      <label htmlFor={id} className="mb-1 block text-[10px] tracking-[0.18em] text-mute uppercase">
         {label}
       </label>
       <input

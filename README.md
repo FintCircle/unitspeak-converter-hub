@@ -182,7 +182,6 @@ Typography Converter
 
 Volume - Lumber Converter
 
-
 [Rewrite this next info section, plus change it or update by including more information here, not this exact below]
 
 A unit is a measurement of a quantity that is defined or adopted by tradition or law. Other quantities can be expressed as a multiple of the unit.
@@ -194,12 +193,6 @@ The intent of this site is to provide a convenient means to convert between the 
 Length Converter
 
 Amount:From:meter [m]kilometer [km]decimeter [dm]centimeter [cm]millimeter [mm]micrometer [µm]nanometer [nm]mile [mi, mi(Int)]yard [yd]foot [ft]inch [in]light year [ly]exameter [Em]petameter [Pm]terameter [Tm]gigameter [Gm]megameter [Mm]hectometer [hm]dekameter [dam]micron [µ]picometer [pm]femtometer [fm]attometer [am]megaparsec [Mpc]kiloparsec [kpc]parsec [pc]astronomical unit [AU, UA]league [lea]nautical league (UK)nautical league (int.)league (statute) [st.league]nautical mile (UK) [NM (UK)]nautical mile (international)mile (statute) [mi, mi (US)]mile (US survey) [mi]mile (Roman)kiloyard [kyd]furlong [fur]furlong (US survey) [fur]chain [ch]chain (US survey) [ch]roperod [rd]rod (US survey) [rd]perchpolefathom [fath]fathom (US survey) [fath]ellfoot (US survey) [ft]link [li]link (US survey) [li]cubit (UK)handspan (cloth)finger (cloth)nail (cloth)inch (US survey) [in]barleycornmil [mil, thou]microinchangstrom [A]a.u. of length [a.u., b]X-unit [X]fermi [F, f]arpentpicapointtwipalnfamncaliber [cl]centiinch [cin]kenRussian archinRoman actusvara de tareavara conuqueravara castellanacubit (Greek)long reedreedlong cubithandbreadthfingerbreadthPlanck lengthElectron radius (classical)Bohr radius [b, a.u.]Earth's equatorial radiusEarth's polar radiusEarth's distance from sunSun's radiusTo:meter [m]kilometer [km]decimeter [dm]centimeter [cm]millimeter [mm]micrometer [µm]nanometer [nm]mile [mi, mi(Int)]yard [yd]foot [ft]inch [in]light year [ly]exameter [Em]petameter [Pm]terameter [Tm]gigameter [Gm]megameter [Mm]hectometer [hm]dekameter [dam]micron [µ]picometer [pm]femtometer [fm]attometer [am]megaparsec [Mpc]kiloparsec [kpc]parsec [pc]astronomical unit [AU, UA]league [lea]nautical league (UK)nautical league (int.)league (statute) [st.league]nautical mile (UK) [NM (UK)]nautical mile (international)mile (statute) [mi, mi (US)]mile (US survey) [mi]mile (Roman)kiloyard [kyd]furlong [fur]furlong (US survey) [fur]chain [ch]chain (US survey) [ch]roperod [rd]rod (US survey) [rd]perchpolefathom [fath]fathom (US survey) [fath]ellfoot (US survey) [ft]link [li]link (US survey) [li]cubit (UK)handspan (cloth)finger (cloth)nail (cloth)inch (US survey) [in]barleycornmil [mil, thou]microinchangstrom [A]a.u. of length [a.u., b]X-unit [X]fermi [F, f]arpentpicapointtwipalnfamncaliber [cl]centiinch [cin]kenRussian archinRoman actusvara de tareavara conuqueravara castellanacubit (Greek)long reedreedlong cubithandbreadthfingerbreadthPlanck lengthElectron radius (classical)Bohr radius [b, a.u.]Earth's equatorial radiusEarth's polar radiusEarth's distance from sunSun's radius
-
-
-
-
-
-
 
 Popular length unit conversions
 
@@ -278,9 +271,6 @@ yards to inches
 yards to miles
 
 miles to yards
-
-
-
 
 Complete list of length units for conversion
 

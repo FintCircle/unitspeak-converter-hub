@@ -21,7 +21,7 @@ const notes: Record<string, string[]> = {
     "Engineers and machinists use it for wire cross-sections, small components and tolerances, and biologists use it under the microscope.",
   ],
   hectare: [
-    "A hectare is 10,000 square meters — a square 100 meters on each side. The name comes from \"hecto\" for one hundred and \"are\", an older metric unit of 100 square meters.",
+    'A hectare is 10,000 square meters — a square 100 meters on each side. The name comes from "hecto" for one hundred and "are", an older metric unit of 100 square meters.',
     "It is the world's standard unit for land: farms, vineyards, forests and parks are measured in hectares almost everywhere outside the United States. One hectare is about 2.47 acres.",
   ],
   acre: [
@@ -50,7 +50,7 @@ const notes: Record<string, string[]> = {
   ],
   barn: [
     "A barn is an almost absurdly small unit of area: 10⁻²⁸ square meters. Physicists invented it during the Second World War to measure the cross-section of atomic nuclei.",
-    "The name is a joke — a nucleus that is easy to hit is \"as big as a barn door\". It is still the everyday unit in nuclear and particle physics.",
+    'The name is a joke — a nucleus that is easy to hit is "as big as a barn door". It is still the everyday unit in nuclear and particle physics.',
   ],
   township: [
     "A township is a unit from the American Public Land Survey: a square six miles on each side, covering 36 square miles — about 93.2 square kilometers.",

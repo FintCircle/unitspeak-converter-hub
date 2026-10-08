@@ -39,8 +39,8 @@ function CommonConverters() {
 
       <h1 className="text-[26px] leading-tight font-semibold">Common Converters</h1>
       <p className="mt-2 max-w-[44ch] text-[13px] text-steel">
-        The measurements most people need day to day — distance, mass, capacity,
-        temperature and the rest of the everyday quantities.
+        The measurements most people need day to day — distance, mass, capacity, temperature and the
+        rest of the everyday quantities.
       </p>
 
       <ul className="mt-5 border-t border-line">
@@ -71,7 +71,19 @@ function CommonConverters() {
                 {converter.name}
               </Link>
             ) : converter.href === "/common-converters/volume-converter" ? (
-              <Link to="/common-converters/volume-converter" className="text-[12.5px] underline-offset-2 hover:underline">{converter.name}</Link>
+              <Link
+                to="/common-converters/volume-converter"
+                className="text-[12.5px] underline-offset-2 hover:underline"
+              >
+                {converter.name}
+              </Link>
+            ) : converter.href === "/common-converters/weight-and-mass-converter" ? (
+              <Link
+                to="/common-converters/weight-and-mass-converter"
+                className="text-[12.5px] underline-offset-2 hover:underline"
+              >
+                {converter.name}
+              </Link>
             ) : (
               <span className="text-[12.5px] text-mute">{converter.name}</span>
             )}

@@ -23,10 +23,7 @@ function UnitField({ label, selected, excludedId, onSelect }: UnitFieldProps) {
       .filter((unit) => unit.id !== excludedId)
       .filter((unit) => {
         if (!needle) return true;
-        return [unit.name, unit.symbol ?? "", unit.id]
-          .join(" ")
-          .toLowerCase()
-          .includes(needle);
+        return [unit.name, unit.symbol ?? "", unit.id].join(" ").toLowerCase().includes(needle);
       })
       .sort((a, b) => {
         const rank = (unit: Unit) => {
@@ -70,7 +67,10 @@ function UnitField({ label, selected, excludedId, onSelect }: UnitFieldProps) {
 
   return (
     <div className="relative min-w-0">
-      <label className="mb-1 block text-[10px] tracking-[0.18em] text-mute uppercase" htmlFor={inputId}>
+      <label
+        className="mb-1 block text-[10px] tracking-[0.18em] text-mute uppercase"
+        htmlFor={inputId}
+      >
         {label}
       </label>
       <input
@@ -81,7 +81,9 @@ function UnitField({ label, selected, excludedId, onSelect }: UnitFieldProps) {
         aria-autocomplete="list"
         aria-controls={listId}
         aria-expanded={open}
-        aria-activedescendant={open && suggestions[activeIndex] ? `${inputId}-option-${activeIndex}` : undefined}
+        aria-activedescendant={
+          open && suggestions[activeIndex] ? `${inputId}-option-${activeIndex}` : undefined
+        }
         value={query || (selected ? unitLabel(selected) : "")}
         placeholder="Type a unit"
         onFocus={() => setOpen(true)}

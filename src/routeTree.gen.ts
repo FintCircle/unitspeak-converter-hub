@@ -23,6 +23,8 @@ import { Route as CommonConvertersLengthConverterIndexRouteImport } from './rout
 import { Route as CommonConvertersLengthConverterPairRouteImport } from './routes/common-converters.length-converter.$pair'
 import { Route as CommonConvertersVolumeConverterIndexRouteImport } from './routes/common-converters.volume-converter.index'
 import { Route as CommonConvertersVolumeConverterPairRouteImport } from './routes/common-converters.volume-converter.$pair'
+import { Route as CommonConvertersWeightAndMassConverterIndexRouteImport } from './routes/common-converters.weight-and-mass-converter.index'
+import { Route as CommonConvertersWeightAndMassConverterPairRouteImport } from './routes/common-converters.weight-and-mass-converter.$pair'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -102,6 +104,18 @@ const CommonConvertersVolumeConverterPairRoute =
     path: '/common-converters/volume-converter/$pair',
     getParentRoute: () => rootRouteImport,
   } as any)
+const CommonConvertersWeightAndMassConverterIndexRoute =
+  CommonConvertersWeightAndMassConverterIndexRouteImport.update({
+    id: '/common-converters/weight-and-mass-converter/',
+    path: '/common-converters/weight-and-mass-converter/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const CommonConvertersWeightAndMassConverterPairRoute =
+  CommonConvertersWeightAndMassConverterPairRouteImport.update({
+    id: '/common-converters/weight-and-mass-converter/$pair',
+    path: '/common-converters/weight-and-mass-converter/$pair',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -114,10 +128,12 @@ export interface FileRoutesByFullPath {
   '/common-converters/area-converter/$pair': typeof CommonConvertersAreaConverterPairRoute
   '/common-converters/length-converter/$pair': typeof CommonConvertersLengthConverterPairRoute
   '/common-converters/volume-converter/$pair': typeof CommonConvertersVolumeConverterPairRoute
+  '/common-converters/weight-and-mass-converter/$pair': typeof CommonConvertersWeightAndMassConverterPairRoute
   '/common-converters/angle-converter/': typeof CommonConvertersAngleConverterIndexRoute
   '/common-converters/area-converter/': typeof CommonConvertersAreaConverterIndexRoute
   '/common-converters/length-converter/': typeof CommonConvertersLengthConverterIndexRoute
   '/common-converters/volume-converter/': typeof CommonConvertersVolumeConverterIndexRoute
+  '/common-converters/weight-and-mass-converter/': typeof CommonConvertersWeightAndMassConverterIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -130,10 +146,12 @@ export interface FileRoutesByTo {
   '/common-converters/area-converter/$pair': typeof CommonConvertersAreaConverterPairRoute
   '/common-converters/length-converter/$pair': typeof CommonConvertersLengthConverterPairRoute
   '/common-converters/volume-converter/$pair': typeof CommonConvertersVolumeConverterPairRoute
+  '/common-converters/weight-and-mass-converter/$pair': typeof CommonConvertersWeightAndMassConverterPairRoute
   '/common-converters/angle-converter': typeof CommonConvertersAngleConverterIndexRoute
   '/common-converters/area-converter': typeof CommonConvertersAreaConverterIndexRoute
   '/common-converters/length-converter': typeof CommonConvertersLengthConverterIndexRoute
   '/common-converters/volume-converter': typeof CommonConvertersVolumeConverterIndexRoute
+  '/common-converters/weight-and-mass-converter': typeof CommonConvertersWeightAndMassConverterIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -147,10 +165,12 @@ export interface FileRoutesById {
   '/common-converters/area-converter/$pair': typeof CommonConvertersAreaConverterPairRoute
   '/common-converters/length-converter/$pair': typeof CommonConvertersLengthConverterPairRoute
   '/common-converters/volume-converter/$pair': typeof CommonConvertersVolumeConverterPairRoute
+  '/common-converters/weight-and-mass-converter/$pair': typeof CommonConvertersWeightAndMassConverterPairRoute
   '/common-converters/angle-converter/': typeof CommonConvertersAngleConverterIndexRoute
   '/common-converters/area-converter/': typeof CommonConvertersAreaConverterIndexRoute
   '/common-converters/length-converter/': typeof CommonConvertersLengthConverterIndexRoute
   '/common-converters/volume-converter/': typeof CommonConvertersVolumeConverterIndexRoute
+  '/common-converters/weight-and-mass-converter/': typeof CommonConvertersWeightAndMassConverterIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -165,10 +185,12 @@ export interface FileRouteTypes {
     | '/common-converters/area-converter/$pair'
     | '/common-converters/length-converter/$pair'
     | '/common-converters/volume-converter/$pair'
+    | '/common-converters/weight-and-mass-converter/$pair'
     | '/common-converters/angle-converter/'
     | '/common-converters/area-converter/'
     | '/common-converters/length-converter/'
     | '/common-converters/volume-converter/'
+    | '/common-converters/weight-and-mass-converter/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -181,10 +203,12 @@ export interface FileRouteTypes {
     | '/common-converters/area-converter/$pair'
     | '/common-converters/length-converter/$pair'
     | '/common-converters/volume-converter/$pair'
+    | '/common-converters/weight-and-mass-converter/$pair'
     | '/common-converters/angle-converter'
     | '/common-converters/area-converter'
     | '/common-converters/length-converter'
     | '/common-converters/volume-converter'
+    | '/common-converters/weight-and-mass-converter'
   id:
     | '__root__'
     | '/'
@@ -197,10 +221,12 @@ export interface FileRouteTypes {
     | '/common-converters/area-converter/$pair'
     | '/common-converters/length-converter/$pair'
     | '/common-converters/volume-converter/$pair'
+    | '/common-converters/weight-and-mass-converter/$pair'
     | '/common-converters/angle-converter/'
     | '/common-converters/area-converter/'
     | '/common-converters/length-converter/'
     | '/common-converters/volume-converter/'
+    | '/common-converters/weight-and-mass-converter/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -214,10 +240,12 @@ export interface RootRouteChildren {
   CommonConvertersAreaConverterPairRoute: typeof CommonConvertersAreaConverterPairRoute
   CommonConvertersLengthConverterPairRoute: typeof CommonConvertersLengthConverterPairRoute
   CommonConvertersVolumeConverterPairRoute: typeof CommonConvertersVolumeConverterPairRoute
+  CommonConvertersWeightAndMassConverterPairRoute: typeof CommonConvertersWeightAndMassConverterPairRoute
   CommonConvertersAngleConverterIndexRoute: typeof CommonConvertersAngleConverterIndexRoute
   CommonConvertersAreaConverterIndexRoute: typeof CommonConvertersAreaConverterIndexRoute
   CommonConvertersLengthConverterIndexRoute: typeof CommonConvertersLengthConverterIndexRoute
   CommonConvertersVolumeConverterIndexRoute: typeof CommonConvertersVolumeConverterIndexRoute
+  CommonConvertersWeightAndMassConverterIndexRoute: typeof CommonConvertersWeightAndMassConverterIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -320,6 +348,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommonConvertersVolumeConverterPairRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/common-converters/weight-and-mass-converter/': {
+      id: '/common-converters/weight-and-mass-converter/'
+      path: '/common-converters/weight-and-mass-converter'
+      fullPath: '/common-converters/weight-and-mass-converter/'
+      preLoaderRoute: typeof CommonConvertersWeightAndMassConverterIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/common-converters/weight-and-mass-converter/$pair': {
+      id: '/common-converters/weight-and-mass-converter/$pair'
+      path: '/common-converters/weight-and-mass-converter/$pair'
+      fullPath: '/common-converters/weight-and-mass-converter/$pair'
+      preLoaderRoute: typeof CommonConvertersWeightAndMassConverterPairRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -338,6 +380,8 @@ const rootRouteChildren: RootRouteChildren = {
     CommonConvertersLengthConverterPairRoute,
   CommonConvertersVolumeConverterPairRoute:
     CommonConvertersVolumeConverterPairRoute,
+  CommonConvertersWeightAndMassConverterPairRoute:
+    CommonConvertersWeightAndMassConverterPairRoute,
   CommonConvertersAngleConverterIndexRoute:
     CommonConvertersAngleConverterIndexRoute,
   CommonConvertersAreaConverterIndexRoute:
@@ -346,6 +390,8 @@ const rootRouteChildren: RootRouteChildren = {
     CommonConvertersLengthConverterIndexRoute,
   CommonConvertersVolumeConverterIndexRoute:
     CommonConvertersVolumeConverterIndexRoute,
+  CommonConvertersWeightAndMassConverterIndexRoute:
+    CommonConvertersWeightAndMassConverterIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

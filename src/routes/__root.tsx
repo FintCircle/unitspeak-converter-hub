@@ -155,12 +155,10 @@ function RootComponent() {
             <Link to="/" className="hover:underline">
               Unitspeak
             </Link>{" "}
-            — exact conversion factors across the SI, metric, imperial and historic
-            systems.
+            — exact conversion factors across the SI, metric, imperial and historic systems.
           </div>
         </footer>
       </div>
     </QueryClientProvider>
   );
 }
-

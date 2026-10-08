@@ -114,8 +114,8 @@ function AngleConverterPage() {
           ))}
         </ul>
         <p className="mt-3 text-[11px] leading-relaxed text-mute">
-          All factors are expressed against the {unitLabel(degree)}, one 360th of a full
-          turn. The SI unit of angle is the radian ({angleShort(angleUnitById.get("radian")!)}
+          All factors are expressed against the {unitLabel(degree)}, one 360th of a full turn. The
+          SI unit of angle is the radian ({angleShort(angleUnitById.get("radian")!)}
           ), equal to about 57.3 degrees.
         </p>
       </section>

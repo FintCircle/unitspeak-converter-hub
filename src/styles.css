@@ -178,5 +178,4 @@
   ::selection {
     background-color: color-mix(in oklab, var(--color-ox) 20%, transparent);
   }
-
 }
