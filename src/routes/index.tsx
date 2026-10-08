@@ -45,8 +45,8 @@ function Home() {
           Unit converters — full versions
         </h2>
         <p className="mb-4 text-[11px] text-mute">
-          {totalConverterCount} converters, grouped by field. Length, angle and area are live; the
-          rest arrive in the next batches.
+          {totalConverterCount} converters, grouped by field. Length, weight, volume, angle and area
+          are live; the rest arrive in the next batches.
         </p>
 
         {categories.map((category) => (
@@ -56,34 +56,10 @@ function Home() {
             </h3>
             <div className="columns-2 gap-4 pt-1">
               {category.converters.map((converter) =>
-                converter.href === "/common-converters/length-converter" ? (
+                converter.href ? (
                   <Link
                     key={converter.name}
-                    to="/common-converters/length-converter"
-                    className="block py-1.5 text-[12px] break-inside-avoid text-ink underline-offset-2 hover:underline"
-                  >
-                    {converter.name}
-                  </Link>
-                ) : converter.href === "/common-converters/angle-converter" ? (
-                  <Link
-                    key={converter.name}
-                    to="/common-converters/angle-converter"
-                    className="block py-1.5 text-[12px] break-inside-avoid text-ink underline-offset-2 hover:underline"
-                  >
-                    {converter.name}
-                  </Link>
-                ) : converter.href === "/common-converters/area-converter" ? (
-                  <Link
-                    key={converter.name}
-                    to="/common-converters/area-converter"
-                    className="block py-1.5 text-[12px] break-inside-avoid text-ink underline-offset-2 hover:underline"
-                  >
-                    {converter.name}
-                  </Link>
-                ) : converter.href === "/common-converters/volume-converter" ? (
-                  <Link
-                    key={converter.name}
-                    to="/common-converters/volume-converter"
+                    to={converter.href}
                     className="block py-1.5 text-[12px] break-inside-avoid text-ink underline-offset-2 hover:underline"
                   >
                     {converter.name}
