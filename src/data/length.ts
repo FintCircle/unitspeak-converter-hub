@@ -249,7 +249,6 @@ export function formatFactor(value: number): string {
   return String(value);
 }
 
-
 export function convertLength(amount: number, fromId: string, toId: string): number {
   const from = lengthUnitById.get(fromId);
   const to = lengthUnitById.get(toId);

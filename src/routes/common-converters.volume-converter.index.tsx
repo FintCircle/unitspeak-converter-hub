@@ -1,9 +1,116 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { UnitConverter } from "@/components/UnitConverter";
-import { formatVolumeFactor, volumeUnitById, volumeUnits, volumePairLabel, popularVolumeConversions, volumePairSlug, volumeShort, volumeUnitLabel } from "@/data/volume";
+import {
+  formatVolumeFactor,
+  volumeUnitById,
+  volumeUnits,
+  volumePairLabel,
+  popularVolumeConversions,
+  volumePairSlug,
+  volumeShort,
+  volumeUnitLabel,
+} from "@/data/volume";
 
 export const Route = createFileRoute("/common-converters/volume-converter/")({
-  head: () => ({ meta: [{ title: "Volume Converter — Liters, Gallons, Cubic Meters | Unitspeak" }, { name: "description", content: "Convert volume between liters, gallons, cubic meters, cups and dozens of other units with exact factors." }, { property: "og:title", content: "Volume Converter — Liters, Gallons, Cubic Meters | Unitspeak" }, { property: "og:description", content: "Instant volume conversion with exact factors and a complete volume unit reference." }], links: [{ rel: "canonical", href: "/common-converters/volume-converter" }] }),
+  head: () => ({
+    meta: [
+      { title: "Volume Converter — Liters, Gallons, Cubic Meters | Unitspeak" },
+      {
+        name: "description",
+        content:
+          "Convert volume between liters, gallons, cubic meters, cups and dozens of other units with exact factors.",
+      },
+      {
+        property: "og:title",
+        content: "Volume Converter — Liters, Gallons, Cubic Meters | Unitspeak",
+      },
+      {
+        property: "og:description",
+        content:
+          "Instant volume conversion with exact factors and a complete volume unit reference.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "/common-converters/volume-converter" }],
+  }),
   component: VolumeConverterPage,
 });
-function VolumeConverterPage() { const base = volumeUnitById.get("cubic-meter")!; return <main className="mx-auto max-w-md px-4 pb-16"><nav className="pt-3 pb-2 text-[11px] text-mute"><Link to="/" className="underline-offset-2 hover:underline">Home</Link><span className="mx-1.5">/</span><Link to="/common-converters" className="underline-offset-2 hover:underline">Common Converters</Link><span className="mx-1.5">/</span><span className="text-ink">Volume Converter</span></nav><UnitConverter title="Volume Converter" units={volumeUnits} initialAmount="1" initialFrom="liter" initialTo="cubic-meter" /><section className="mt-7"><h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">Popular volume unit conversions</h2><div className="grid grid-cols-2 gap-x-3 border-t border-line">{popularVolumeConversions.map(([f,t]) => <Link key={`${f}-${t}`} to="/common-converters/volume-converter/$pair" params={{ pair: volumePairSlug(f,t) }} className="border-b border-line py-2 text-[12px] text-ink underline-offset-2 hover:underline">{volumePairLabel(f,t)}</Link>)}</div></section><section className="mt-7"><h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">Complete list of volume units for conversion</h2><ul className="border-t border-line">{volumeUnits.map((unit) => <li key={unit.id} className="border-b border-line py-2"><span className="text-[12px] break-words">{unit.id === "cubic-meter" ? volumeUnitLabel(unit) : `1 ${volumeUnitLabel(unit)} = ${formatVolumeFactor(unit.factor)} cubic meter [m³]`}</span>{unit.id !== "cubic-meter" && <div className="mt-0.5 flex flex-wrap gap-x-3 text-[11px] text-ox"><Link to="/common-converters/volume-converter/$pair" params={{ pair: volumePairSlug(unit.id,"cubic-meter") }} className="underline-offset-2 hover:underline">{unit.name} to cubic meter</Link><Link to="/common-converters/volume-converter/$pair" params={{ pair: volumePairSlug("cubic-meter",unit.id) }} className="underline-offset-2 hover:underline">cubic meter to {unit.name}</Link></div>}</li>)}</ul><p className="mt-3 text-[11px] leading-relaxed text-mute">All factors are expressed against the {volumeUnitLabel(base)}, the SI derived unit of volume. A cubic meter is the volume of a cube one meter on each side.</p></section></main>; }
+function VolumeConverterPage() {
+  const base = volumeUnitById.get("cubic-meter")!;
+  return (
+    <main className="mx-auto max-w-md px-4 pb-16">
+      <nav className="pt-3 pb-2 text-[11px] text-mute">
+        <Link to="/" className="underline-offset-2 hover:underline">
+          Home
+        </Link>
+        <span className="mx-1.5">/</span>
+        <Link to="/common-converters" className="underline-offset-2 hover:underline">
+          Common Converters
+        </Link>
+        <span className="mx-1.5">/</span>
+        <span className="text-ink">Volume Converter</span>
+      </nav>
+      <UnitConverter
+        title="Volume Converter"
+        units={volumeUnits}
+        initialAmount="1"
+        initialFrom="liter"
+        initialTo="cubic-meter"
+      />
+      <section className="mt-7">
+        <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">
+          Popular volume unit conversions
+        </h2>
+        <div className="grid grid-cols-2 gap-x-3 border-t border-line">
+          {popularVolumeConversions.map(([f, t]) => (
+            <Link
+              key={`${f}-${t}`}
+              to="/common-converters/volume-converter/$pair"
+              params={{ pair: volumePairSlug(f, t) }}
+              className="border-b border-line py-2 text-[12px] text-ink underline-offset-2 hover:underline"
+            >
+              {volumePairLabel(f, t)}
+            </Link>
+          ))}
+        </div>
+      </section>
+      <section className="mt-7">
+        <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">
+          Complete list of volume units for conversion
+        </h2>
+        <ul className="border-t border-line">
+          {volumeUnits.map((unit) => (
+            <li key={unit.id} className="border-b border-line py-2">
+              <span className="text-[12px] break-words">
+                {unit.id === "cubic-meter"
+                  ? volumeUnitLabel(unit)
+                  : `1 ${volumeUnitLabel(unit)} = ${formatVolumeFactor(unit.factor)} cubic meter [m³]`}
+              </span>
+              {unit.id !== "cubic-meter" && (
+                <div className="mt-0.5 flex flex-wrap gap-x-3 text-[11px] text-ox">
+                  <Link
+                    to="/common-converters/volume-converter/$pair"
+                    params={{ pair: volumePairSlug(unit.id, "cubic-meter") }}
+                    className="underline-offset-2 hover:underline"
+                  >
+                    {unit.name} to cubic meter
+                  </Link>
+                  <Link
+                    to="/common-converters/volume-converter/$pair"
+                    params={{ pair: volumePairSlug("cubic-meter", unit.id) }}
+                    className="underline-offset-2 hover:underline"
+                  >
+                    cubic meter to {unit.name}
+                  </Link>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-3 text-[11px] leading-relaxed text-mute">
+          All factors are expressed against the {volumeUnitLabel(base)}, the SI derived unit of
+          volume. A cubic meter is the volume of a cube one meter on each side.
+        </p>
+      </section>
+    </main>
+  );
+}

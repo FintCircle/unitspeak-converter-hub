@@ -35,8 +35,8 @@ function Home() {
           Measure, exactly.
         </h1>
         <p className="mt-2 max-w-[44ch] text-[13px] text-pretty text-steel">
-          A reference for converting between thousands of units across the SI, metric,
-          imperial and historic systems — precise figures, no fluff.
+          A reference for converting between thousands of units across the SI, metric, imperial and
+          historic systems — precise figures, no fluff.
         </p>
       </section>
 
@@ -45,8 +45,8 @@ function Home() {
           Unit converters — full versions
         </h2>
         <p className="mb-4 text-[11px] text-mute">
-          {totalConverterCount} converters, grouped by field. Length, angle and area are
-          live; the rest arrive in the next batches.
+          {totalConverterCount} converters, grouped by field. Length, angle and area are live; the
+          rest arrive in the next batches.
         </p>
 
         {categories.map((category) => (
@@ -100,7 +100,6 @@ function Home() {
             </div>
           </div>
         ))}
-
       </section>
 
       <section className="mt-8 border-t border-line pt-4">
@@ -109,37 +108,36 @@ function Home() {
         </h2>
         <div className="space-y-3 text-[12.5px] leading-relaxed text-steel">
           <p>
-            A unit is a fixed quantity — set by tradition, trade practice or law — that
-            other quantities are measured against. Saying a beam is 4 meters long means it
-            is four times the length agreed on as one meter, so the number only carries
-            meaning once the unit is named.
+            A unit is a fixed quantity — set by tradition, trade practice or law — that other
+            quantities are measured against. Saying a beam is 4 meters long means it is four times
+            the length agreed on as one meter, so the number only carries meaning once the unit is
+            named.
           </p>
           <p>
-            Measurement grew up locally. Egyptian cubits, Roman paces, Chinese chi,
-            English feet and Spanish varas were all tied to bodies, farm work or royal
-            decrees, which is why a mile in one place differed from a mile a few hundred
-            kilometres away. The metric system, created in revolutionary France in the
-            1790s, was the first attempt at a coherent decimal alternative built on
-            natural constants rather than custom.
+            Measurement grew up locally. Egyptian cubits, Roman paces, Chinese chi, English feet and
+            Spanish varas were all tied to bodies, farm work or royal decrees, which is why a mile
+            in one place differed from a mile a few hundred kilometres away. The metric system,
+            created in revolutionary France in the 1790s, was the first attempt at a coherent
+            decimal alternative built on natural constants rather than custom.
           </p>
           <p>
-            Today the global standard is the International System of Units (SI), the
-            modern form of the metric system. It rests on seven base units — metre,
-            kilogram, second, ampere, kelvin, mole and candela — each now defined through
-            fixed physical constants such as the speed of light, so a measurement can be
-            reproduced in any laboratory without a reference artefact.
+            Today the global standard is the International System of Units (SI), the modern form of
+            the metric system. It rests on seven base units — metre, kilogram, second, ampere,
+            kelvin, mole and candela — each now defined through fixed physical constants such as the
+            speed of light, so a measurement can be reproduced in any laboratory without a reference
+            artefact.
           </p>
           <p>
-            SI is intended for worldwide use but adoption is uneven. United States
-            customary units still dominate everyday American life, the UK mixes metric
-            with miles and pints, aviation measures altitude in feet, shipping uses
-            nautical miles and knots, and astronomers work in light years and parsecs.
-            Engineering and trade routinely require moving between these systems.
+            SI is intended for worldwide use but adoption is uneven. United States customary units
+            still dominate everyday American life, the UK mixes metric with miles and pints,
+            aviation measures altitude in feet, shipping uses nautical miles and knots, and
+            astronomers work in light years and parsecs. Engineering and trade routinely require
+            moving between these systems.
           </p>
           <p>
-            Unitspeak exists to make that movement quick and dependable: convert between
-            units within and across systems, see the exact factor behind every result, and
-            read how each family of units relates to the SI base it is derived from.
+            Unitspeak exists to make that movement quick and dependable: convert between units
+            within and across systems, see the exact factor behind every result, and read how each
+            family of units relates to the SI base it is derived from.
           </p>
         </div>
       </section>

@@ -32,7 +32,6 @@ export function UnitConverter({
   const ratio = valid ? fromUnit!.factor / toUnit!.factor : NaN;
   const result = valid ? parsed * ratio : NaN;
 
-
   return (
     <section className="border border-line bg-panel ring-1 ring-black/5">
       <div className="flex items-center justify-between border-b border-line px-3 py-1.5">
@@ -76,34 +75,20 @@ export function UnitConverter({
             >
               ⇄
             </button>
-            <UnitCombobox
-              id="to-unit"
-              label="To"
-              units={units}
-              value={to}
-              onChange={setTo}
-            />
+            <UnitCombobox id="to-unit" label="To" units={units} value={to} onChange={setTo} />
           </div>
         )}
 
-
-
         <div className="mt-4 border-t border-line pt-3">
           <div className="flex items-baseline justify-between">
-            <span className="text-[10px] tracking-[0.18em] text-mute uppercase">
-              Result
-            </span>
-            <span className="text-[10px] text-mute">
-              {valid ? result.toExponential(6) : ""}
-            </span>
+            <span className="text-[10px] tracking-[0.18em] text-mute uppercase">Result</span>
+            <span className="text-[10px] text-mute">{valid ? result.toExponential(6) : ""}</span>
           </div>
           <div className="flex flex-wrap items-baseline gap-x-1.5">
             <span className="font-display max-w-full text-[clamp(22px,8.5vw,42px)] leading-tight font-semibold tracking-tight break-all">
               {valid ? formatResult(result) : "—"}
             </span>
-            <span className="text-sm break-all text-mute">
-              {toUnit ? unitShort(toUnit) : ""}
-            </span>
+            <span className="text-sm break-all text-mute">{toUnit ? unitShort(toUnit) : ""}</span>
           </div>
           <div className="mt-1 text-[11px] break-words text-mute">
             {valid

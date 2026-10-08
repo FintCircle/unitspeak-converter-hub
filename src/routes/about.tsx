@@ -36,20 +36,18 @@ function AboutPage() {
 
       <div className="mt-4 space-y-3 border-t border-line pt-4 text-[12.5px] leading-relaxed">
         <p>
-          Unitspeak is a unit conversion reference. It converts between metric, imperial,
-          scientific and historic units using exact, published conversion factors — the
-          same values used in standards documents, not rounded shortcuts.
+          Unitspeak is a unit conversion reference. It converts between metric, imperial, scientific
+          and historic units using exact, published conversion factors — the same values used in
+          standards documents, not rounded shortcuts.
         </p>
         <p>
-          Every conversion has its own page with the factor, the formula, a table of
-          common values and a short explanation of where the unit comes from and who
-          still uses it. Pages load as ordinary web pages, so any conversion can be
-          bookmarked or shared as a link.
+          Every conversion has its own page with the factor, the formula, a table of common values
+          and a short explanation of where the unit comes from and who still uses it. Pages load as
+          ordinary web pages, so any conversion can be bookmarked or shared as a link.
         </p>
         <p>
-          The site is built converter by converter. Length is live; engineering, heat,
-          fluid, light, electricity, magnetism and radiology converters follow in later
-          batches.
+          The site is built converter by converter. Length is live; engineering, heat, fluid, light,
+          electricity, magnetism and radiology converters follow in later batches.
         </p>
         <p>
           Found a wrong factor, a missing unit or a broken page? Email{" "}

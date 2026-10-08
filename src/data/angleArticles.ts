@@ -21,7 +21,7 @@ const notes: Record<string, string[]> = {
     "Minutes matter wherever small angles carry real distance. One minute of latitude on the Earth's surface is one nautical mile, and sharp human eyesight can just about separate two points one arcminute apart.",
   ],
   second: [
-    "A second of arc is one sixtieth of a minute, which makes it one 3,600th of a degree. It is written with a double prime, as in 15\", and is usually called an arcsecond.",
+    'A second of arc is one sixtieth of a minute, which makes it one 3,600th of a degree. It is written with a double prime, as in 15", and is usually called an arcsecond.',
     "This is the scale astronomers work at. Star positions, the apparent size of planets, and the tiny wobble used to measure distance to nearby stars are all quoted in arcseconds. Latitude and longitude are given in degrees, minutes, and seconds for the same reason: it pins a place down to a few tens of meters.",
   ],
   gon: [
@@ -34,7 +34,7 @@ const notes: Record<string, string[]> = {
   ],
   mil: [
     "The mil used here is an artillery and military unit of angle. In this system a full circle is divided into 6,400 mils, which makes one mil 0.05625 degrees.",
-    "Mils are handy for aiming because at long range one mil covers about one meter of width for every thousand meters of distance. Gunners and riflescope users can turn an observed width straight into a range estimate with simple multiplication. Note that other trades use \"mil\" for a thousandth of an inch, which is a length, not an angle.",
+    'Mils are handy for aiming because at long range one mil covers about one meter of width for every thousand meters of distance. Gunners and riflescope users can turn an observed width straight into a range estimate with simple multiplication. Note that other trades use "mil" for a thousandth of an inch, which is a length, not an angle.',
   ],
   revolution: [
     "A revolution is one complete turn, equal to 360 degrees or 2π radians. It is the unit you count in when something spins.",

@@ -226,9 +226,7 @@ function PairPage() {
       </section>
 
       <section className="mt-7">
-        <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">
-          Related conversions
-        </h2>
+        <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">Related conversions</h2>
         <div className="grid grid-cols-2 gap-x-3 border-t border-line">
           <Link
             to="/common-converters/angle-converter/$pair"
@@ -263,9 +261,7 @@ function PairPage() {
         <table className="w-full table-fixed border-t border-line text-[12px]">
           <thead>
             <tr className="text-[10px] tracking-[0.14em] text-mute uppercase">
-              <th className="border-b border-line py-1.5 text-left font-normal">
-                Conversion
-              </th>
+              <th className="border-b border-line py-1.5 text-left font-normal">Conversion</th>
               <th className="border-b border-line py-1.5 text-right font-normal">
                 1 {angleShort(from)} equals
               </th>

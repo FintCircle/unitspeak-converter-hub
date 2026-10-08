@@ -122,7 +122,6 @@ function PairPage() {
 
   const article = unitArticle(from);
 
-
   return (
     <main className="mx-auto max-w-md px-4 pb-16">
       <nav className="pt-3 pb-2 text-[11px] text-mute">
@@ -172,7 +171,6 @@ function PairPage() {
         </button>
         <SharePage title={pair.fullTitle} text={pair.description} />
       </div>
-
 
       <section className="mt-6">
         <h1 className="font-display text-[19px] leading-tight font-semibold tracking-tight">
@@ -227,9 +225,7 @@ function PairPage() {
       </section>
 
       <section className="mt-7">
-        <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">
-          Related conversions
-        </h2>
+        <h2 className="mb-2 text-[12px] tracking-[0.12em] uppercase">Related conversions</h2>
         <div className="grid grid-cols-2 gap-x-3 border-t border-line">
           <Link
             to="/common-converters/length-converter/$pair"
@@ -264,9 +260,7 @@ function PairPage() {
         <table className="w-full table-fixed border-t border-line text-[12px]">
           <thead>
             <tr className="text-[10px] tracking-[0.14em] text-mute uppercase">
-              <th className="border-b border-line py-1.5 text-left font-normal">
-                Conversion
-              </th>
+              <th className="border-b border-line py-1.5 text-left font-normal">Conversion</th>
               <th className="border-b border-line py-1.5 text-right font-normal">
                 1 {unitShort(from)} equals
               </th>

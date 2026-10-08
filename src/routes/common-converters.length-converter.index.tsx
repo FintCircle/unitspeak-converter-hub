@@ -54,7 +54,6 @@ function LengthConverterPage() {
   const amount = search.amount ?? "1";
   const meter = lengthUnitById.get("meter")!;
 
-
   return (
     <main className="mx-auto max-w-md px-4 pb-16">
       <nav className="pt-3 pb-2 text-[11px] text-mute">
@@ -132,9 +131,8 @@ function LengthConverterPage() {
           ))}
         </ul>
         <p className="mt-3 text-[11px] leading-relaxed text-mute">
-          All factors are expressed against the SI base unit of length, the{" "}
-          {unitLabel(meter)}, defined as the distance light travels in vacuum in
-          1/299,792,458 of a second.
+          All factors are expressed against the SI base unit of length, the {unitLabel(meter)},
+          defined as the distance light travels in vacuum in 1/299,792,458 of a second.
         </p>
       </section>
     </main>

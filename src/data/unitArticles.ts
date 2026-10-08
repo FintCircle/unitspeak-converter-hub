@@ -19,7 +19,7 @@ const notes: Record<string, string[]> = {
     "A meter is a handy size for everyday things. A doorway is about two meters tall, a long step is close to one meter, and a school hallway might be thirty meters long. Because the metric system works in tens, bigger and smaller units are just the meter with a prefix: a kilometer is 1,000 meters and a centimeter is one hundredth of a meter.",
   ],
   kilometer: [
-    "A kilometer is 1,000 meters. The prefix \"kilo\" always means one thousand, so the math never changes. Most of the world measures road distances and running races in kilometers, which is why road signs outside the United States and the United Kingdom count down in km.",
+    'A kilometer is 1,000 meters. The prefix "kilo" always means one thousand, so the math never changes. Most of the world measures road distances and running races in kilometers, which is why road signs outside the United States and the United Kingdom count down in km.',
     "It takes an average walker about 12 minutes to cover a kilometer, and a car on an open highway crosses one in well under a minute. A 5K race is five kilometers, and a marathon is a little over 42 kilometers.",
   ],
   centimeter: [
@@ -39,7 +39,7 @@ const notes: Record<string, string[]> = {
     "This is the scale of molecules and light itself. Visible light has wavelengths from about 380 nanometers (violet) to 700 nanometers (red), and the tiny switches inside a computer chip are just a few nanometers wide.",
   ],
   mile: [
-    "A mile is 1,609.344 meters, or 5,280 feet. The unit goes back to the Roman \"mille passus,\" a thousand paces of a marching soldier, though the modern mile is a bit longer than the Roman one.",
+    'A mile is 1,609.344 meters, or 5,280 feet. The unit goes back to the Roman "mille passus," a thousand paces of a marching soldier, though the modern mile is a bit longer than the Roman one.',
     "The United States and the United Kingdom still post road speeds and distances in miles. A brisk walk covers a mile in about 15 minutes, and a mile is four laps of a standard running track plus a short extra stretch.",
   ],
   yard: [
@@ -51,7 +51,7 @@ const notes: Record<string, string[]> = {
     "In the United States, people give their height in feet and inches, ceilings are measured in feet, and aircraft altitudes worldwide are reported in feet. Twelve inches to a foot and three feet to a yard are the two conversions worth memorizing.",
   ],
   inch: [
-    "An inch is exactly 25.4 millimeters, and 12 inches make a foot. The word comes from the Latin \"uncia,\" meaning a twelfth part.",
+    'An inch is exactly 25.4 millimeters, and 12 inches make a foot. The word comes from the Latin "uncia," meaning a twelfth part.',
     "Inches measure screen sizes, pipe widths, rainfall in the United States, and lumber. They are usually split into halves, quarters, eighths, and sixteenths rather than decimals, which is why a tape measure looks so crowded near each inch mark.",
   ],
   "nautical-mile-international": [
@@ -63,7 +63,7 @@ const notes: Record<string, string[]> = {
     "Astronomers use light years because space is so empty. The nearest star beyond the Sun, Proxima Centauri, is about 4.2 light years away, and our galaxy is roughly 100,000 light years across. Seeing a star ten light years away means seeing light that left it ten years ago.",
   ],
   parsec: [
-    "A parsec is about 3.26 light years, or roughly 30.9 trillion kilometers. The name is short for \"parallax second,\" because it comes from a measuring trick: a star one parsec away appears to shift by one arcsecond as the Earth moves across its orbit.",
+    'A parsec is about 3.26 light years, or roughly 30.9 trillion kilometers. The name is short for "parallax second," because it comes from a measuring trick: a star one parsec away appears to shift by one arcsecond as the Earth moves across its orbit.',
     "Professional astronomers usually prefer parsecs to light years, and they scale it up for bigger jobs — kiloparsecs for distances inside a galaxy and megaparsecs for the gaps between galaxies.",
   ],
   "astronomical-unit": [
@@ -75,7 +75,7 @@ const notes: Record<string, string[]> = {
     "Atoms are a few angstroms across, so chemists and crystallographers use the unit to describe the spacing of atoms in a molecule or a crystal.",
   ],
   furlong: [
-    "A furlong is 220 yards, or one eighth of a mile. The name means \"furrow long\" — the length a team of oxen was expected to plow before stopping for a rest.",
+    'A furlong is 220 yards, or one eighth of a mile. The name means "furrow long" — the length a team of oxen was expected to plow before stopping for a rest.',
     "It survives mainly in horse racing, where race lengths are still announced in furlongs, and in old land records where fields were laid out in furlongs and acres.",
   ],
   fathom: [
@@ -113,14 +113,24 @@ function family(unit: Unit): string {
   const n = unit.name.toLowerCase();
   if (/parsec|light year|astronomical|planck|radius|distance from sun/.test(n))
     return "astronomical";
-  if (/^(exa|peta|tera|giga|mega|kilo|hecto|deka|deci|centi|milli|micro|nano|pico|femto|atto)/.test(n))
+  if (
+    /^(exa|peta|tera|giga|mega|kilo|hecto|deka|deci|centi|milli|micro|nano|pico|femto|atto)/.test(n)
+  )
     return "metric";
   if (/survey/.test(n)) return "survey";
-  if (/roman|greek|russian|vara|reed|cubit|aln|famn|ken|archin|actus|ell|span|nail|finger|barleycorn|handbreadth/.test(n))
+  if (
+    /roman|greek|russian|vara|reed|cubit|aln|famn|ken|archin|actus|ell|span|nail|finger|barleycorn|handbreadth/.test(
+      n,
+    )
+  )
     return "historic";
   if (/point|pica|twip/.test(n)) return "typographic";
   if (/fermi|x-unit|a\.u\.|bohr|electron|angstrom|micron/.test(n)) return "scientific";
-  if (/league|nautical|mile|furlong|chain|link|rod|perch|pole|fathom|rope|caliber|mil|inch|foot|yard/.test(n))
+  if (
+    /league|nautical|mile|furlong|chain|link|rod|perch|pole|fathom|rope|caliber|mil|inch|foot|yard/.test(
+      n,
+    )
+  )
     return "imperial";
   return "other";
 }
